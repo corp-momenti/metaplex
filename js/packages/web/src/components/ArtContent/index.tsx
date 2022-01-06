@@ -211,7 +211,6 @@ const HTMLContent = ({
       )}
       <iframe
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-        sandbox="allow-scripts"
         frameBorder="0"
         src={htmlURL}
         className={`html-iframe ${className}`}
@@ -357,6 +356,12 @@ export const ArtContent = ({
   return (
     <ArtContentWrapper
       ref={ref as any}
+      style={{
+        height: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
     >
       {content}
     </ArtContentWrapper>
