@@ -76,6 +76,7 @@ export const AuctionItem = ({
       style={style}
       active={active}
       allowMeshRender={true}
+      artView={true}
     />
   );
 };
