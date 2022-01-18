@@ -52,6 +52,7 @@ export enum MetadataCategory {
   Image = 'image',
   VR = 'vr',
   HTML = 'html',
+  GIV = 'giv',
 }
 
 export type MetadataFile = {

@@ -10,6 +10,7 @@ import {
   ArtworksView,
   AuctionCreateView,
   AuctionView,
+  GivCreateView,
   HomeView,
   StaticPageView,
 } from './views';
@@ -49,6 +50,11 @@ export function Routes() {
               exact
               path="/art/create/:step_param?"
               component={() => <ArtCreateView />}
+            />
+            <Route
+              exact
+              path="/giv/create/:step_param?"
+              component={() => <GivCreateView />}
             />
             <Route
               exact

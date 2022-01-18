@@ -47,16 +47,28 @@ const UserActions = (props: { mobile?: boolean; onClick?: any }) => {
         (props.mobile ? (
           <div className="actions-buttons actions-user">
             {canCreate && (
-              <Link to={`/art/create`}>
-                <Button
-                  onClick={() => {
-                    props.onClick ? props.onClick() : null;
-                  }}
-                  className="black-btn"
-                >
-                  Create
-                </Button>
-              </Link>
+              <>
+                <Link to={`/art/create`}>
+                  <Button
+                    onClick={() => {
+                      props.onClick ? props.onClick() : null;
+                    }}
+                    className="black-btn"
+                  >
+                    Create
+                  </Button>
+                </Link>
+                <Link to={`/giv/create`}>
+                  <Button
+                    onClick={() => {
+                      props.onClick ? props.onClick() : null;
+                    }}
+                    className="black-btn"
+                  >
+                    Create Giv
+                  </Button>
+                </Link>
+              </>
             )}
             <Link to={`/auction/create/0`}>
               <Button
@@ -80,6 +92,11 @@ const UserActions = (props: { mobile?: boolean; onClick?: any }) => {
                 <Link to={`/art/create`} style={{ width: '100%' }}>
                   <Button className="metaplex-button-default" style={btnStyle}>
                     Create
+                  </Button>
+                </Link>
+                <Link to={`/giv/create`} style={{ width: '100%' }}>
+                  <Button className="metaplex-button-default" style={btnStyle}>
+                    Create Giv
                   </Button>
                 </Link>
                 &nbsp;&nbsp;
