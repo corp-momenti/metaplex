@@ -277,12 +277,13 @@ const UploadStep = (props: {
   const [coverFile, setCoverFile] = useState<File | undefined>(
     props.files?.[0],
   );
-  const [mainFile, setMainFile] = useState<File | undefined>(props.files?.[1]);
   const [coverArtError, setCoverArtError] = useState<string>();
 
-  const [customURL, setCustomURL] = useState<string>('');
-  const [customURLErr, setCustomURLErr] = useState<string>('');
-  const disableContinue = !(coverFile || (!customURLErr && !!customURL));
+  const [webplayerURL, setWebPlayerURL] = useState<string>('');
+  const [momentInfoId, setMomentInfoId] = useState<number>();
+  const [projectId, setProjectId] = useState<number>();
+  const [webplayerURLErr, setCustomURLErr] = useState<string>('');
+  const disableContinue = !(coverFile || (!webplayerURLErr && !!webplayerURL));
 
   useEffect(() => {
     props.setAttributes({
@@ -294,29 +295,7 @@ const UploadStep = (props: {
     });
   }, []);
 
-  const uploadMsg = (category: MetadataCategory) => {
-    switch (category) {
-      case MetadataCategory.GIV:
-        return 'Upload your GIV File (GIV)';
-      default:
-        return 'Please go back and choose a category';
-    }
-  };
-
-  const acceptableFiles = (category: MetadataCategory) => {
-    switch (category) {
-      case MetadataCategory.GIV:
-        return '.giv';
-      default:
-        return '';
-    }
-  };
-
-  const { category } = props.attributes.properties;
-
-  const urlPlaceholder = `http://example.com/path/to/${
-    category === MetadataCategory.Image ? 'image' : 'file'
-  }`;
+  const urlPlaceholder = 'https://webplayer.momenti.tv/?moment_info_id=...&project_id=...';
 
   return (
     <>
@@ -337,7 +316,6 @@ const UploadStep = (props: {
           style={{ padding: 20, background: 'rgba(255, 255, 255, 0.08)' }}
           multiple={false}
           onRemove={() => {
-            setMainFile(undefined);
             setCoverFile(undefined);
           }}
           customRequest={info => {
@@ -381,43 +359,6 @@ const UploadStep = (props: {
           )}
         </Dragger>
       </Row>
-      {props.attributes.properties?.category !== MetadataCategory.Image && (
-        <Row
-          className="content-action"
-          style={{ marginBottom: 5, marginTop: 30 }}
-        >
-          <h3>{uploadMsg(props.attributes.properties?.category)}</h3>
-          <Dragger
-            accept={acceptableFiles(props.attributes.properties?.category)}
-            style={{ padding: 20, background: 'rgba(255, 255, 255, 0.08)' }}
-            multiple={false}
-            customRequest={info => {
-              // dont upload files here, handled outside of the control
-              info?.onSuccess?.({}, null as any);
-            }}
-            fileList={mainFile ? [mainFile as any] : []}
-            onChange={async info => {
-              const file = info.file.originFileObj;
-
-              // Reset image URL
-              setCustomURL('');
-              setCustomURLErr('');
-
-              if (file) setMainFile(file);
-            }}
-            onRemove={() => {
-              setMainFile(undefined);
-            }}
-          >
-            <div className="ant-upload-drag-icon">
-              <h3 style={{ fontWeight: 700 }}>Upload your creation</h3>
-            </div>
-            <p className="ant-upload-text" style={{ color: '#6d6d6d' }}>
-              Drag and drop, or click to browse
-            </p>
-          </Dragger>
-        </Row>
-      )}
       <Form.Item
         className={'url-form-action'}
         style={{
@@ -426,28 +367,40 @@ const UploadStep = (props: {
           paddingTop: 30,
           marginBottom: 4,
         }}
-        label={<h3>OR use absolute URL to content</h3>}
+        label={<h3>Add Giv Link</h3>}
         labelAlign="left"
         colon={false}
-        validateStatus={customURLErr ? 'error' : 'success'}
-        help={customURLErr}
+        validateStatus={webplayerURLErr ? 'error' : 'success'}
+        help={webplayerURLErr}
       >
         <Input
-          disabled={!!mainFile}
           placeholder={urlPlaceholder}
-          value={customURL}
-          onChange={ev => setCustomURL(ev.target.value)}
+          value={webplayerURL}
+          onChange={ev => setWebPlayerURL(ev.target.value)}
           onFocus={() => setCustomURLErr('')}
           onBlur={() => {
-            if (!customURL) {
+            if (!webplayerURL) {
               setCustomURLErr('');
               return;
             }
 
             try {
               // Validate URL and save
-              new URL(customURL);
-              setCustomURL(customURL);
+              const url = new URL(webplayerURL);
+              if (url.host !== 'webplayer.momenti.tv') {
+                throw new Error(`${url.host} is not supported host`)
+              }
+              const momentInfoIdString = url.searchParams.get('moment_info_id')
+              if (!momentInfoIdString) {
+                throw new Error("There is no moment_info_id")
+              }
+              const projectIdstring = url.searchParams.get('project_id')
+              if (!projectIdstring) {
+                throw new Error("There is no project_id")
+              }
+              setMomentInfoId(parseInt(momentInfoIdString, 10))
+              setProjectId(parseInt(projectIdstring, 10))
+              setWebPlayerURL(webplayerURL);
               setCustomURLErr('');
             } catch (e) {
               console.error(e);
@@ -462,11 +415,31 @@ const UploadStep = (props: {
           size="large"
           disabled={disableContinue}
           onClick={async () => {
+            const data = {
+                operationName: "GetMomentInfo",
+                variables: {
+                  input: {
+                    projectId,
+                    momentInfoId,
+                  }
+                },
+                query: "query GetMomentInfo($input: GetMomentInfoInput!) { getMomentInfo(input: $input) { momentInfo { fileUrl } } }"
+            };
+            const graphqlApi = 'https://api.momenti.tv/v4/player/api';
+            const momentInfo = await fetch(graphqlApi, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            }).then(res => res.json())
+            const { fileUrl } = momentInfo.data.getMomentInfo.momentInfo;
+            const content = await fetch(fileUrl).then(res => res.blob())
             props.setAttributes({
               ...props.attributes,
               properties: {
                 ...props.attributes.properties,
-                files: [coverFile, mainFile, customURL]
+                files: [coverFile, webplayerURL]
                   .filter(f => f)
                   .map(f => {
                     const uri = typeof f === 'string' ? f : f?.name || '';
@@ -481,16 +454,11 @@ const UploadStep = (props: {
                     } as MetadataFile;
                   }),
               },
-              image: coverFile?.name || customURL || '',
-              animation_url:
-                props.attributes.properties?.category !==
-                  MetadataCategory.Image && customURL
-                  ? customURL
-                  : mainFile && mainFile.name,
+              image: coverFile?.name || '',
+              animation_url: webplayerURL
             });
-            const url = await fetch(customURL).then(res => res.blob());
-            const files = [coverFile, mainFile, customURL ? new File([url], customURL) : '']
-              .filter(f => f) as File[];
+            const files = [coverFile, new File([content], fileUrl)]
+              .filter(Boolean) as File[];
 
             props.setFiles(files);
             props.confirm();
@@ -1221,9 +1189,9 @@ const Congrats = (props: {
       url: `${
         window.location.origin
       }/#/art/${props.nft?.metadataAccount.toString()}`,
-      hashtags: 'NFT,Crypto,Metaplex',
+      hashtags: 'NFT,Crypto,GIV,Momenti',
       // via: "Metaplex",
-      related: 'Metaplex,Solana',
+      related: 'GIV,Momenti,Solana',
     };
     const queryParams = new URLSearchParams(params).toString();
     return `https://twitter.com/intent/tweet?${queryParams}`;
