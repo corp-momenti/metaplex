@@ -163,6 +163,7 @@ const HTMLWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+  min-height: 400px;
 `;
 
 const HTMLContent = ({
@@ -230,8 +231,8 @@ const HTMLContent = ({
 
 const ArtContentWrapper = styled.div`
   display: flex;
-  alignItems: center;
-  justifyContent: center;
+  align-items: center;
+  justify-content: center;
   height: 100%;
 `;
 
