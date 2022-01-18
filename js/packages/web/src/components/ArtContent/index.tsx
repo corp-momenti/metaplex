@@ -322,7 +322,7 @@ export const ArtContent = ({
     );
   }
 
-  if (categoryState === 'html' || animationUrlExt === 'html') {
+  if (categoryState === 'giv' || categoryState === 'html' || animationUrlExt === 'html') {
     return (
       <HTMLContent
         uri={uriState}
