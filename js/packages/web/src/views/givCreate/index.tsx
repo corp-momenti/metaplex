@@ -283,7 +283,7 @@ const UploadStep = (props: {
   const [momentInfoId, setMomentInfoId] = useState<number>();
   const [projectId, setProjectId] = useState<number>();
   const [webplayerURLErr, setCustomURLErr] = useState<string>('');
-  const disableContinue = !(coverFile || (!webplayerURLErr && !!webplayerURL));
+  const disableContinue = !(coverFile && (!webplayerURLErr && !!webplayerURL));
 
   useEffect(() => {
     props.setAttributes({
@@ -423,7 +423,7 @@ const UploadStep = (props: {
                     momentInfoId,
                   }
                 },
-                query: "query GetMomentInfo($input: GetMomentInfoInput!) { getMomentInfo(input: $input) { momentInfo { fileUrl } } }"
+                query: "query GetMomentInfo($input: GetMomentInfoInput!) { getMomentInfo(input: $input) { momentInfo { fileUrl, title } } }"
             };
             const graphqlApi = 'https://api.momenti.tv/v4/player/api';
             const momentInfo = await fetch(graphqlApi, {
@@ -433,10 +433,11 @@ const UploadStep = (props: {
                 },
                 body: JSON.stringify(data),
             }).then(res => res.json())
-            const { fileUrl } = momentInfo.data.getMomentInfo.momentInfo;
+            const { fileUrl, title } = momentInfo.data.getMomentInfo.momentInfo;
             const content = await fetch(fileUrl).then(res => res.blob())
             props.setAttributes({
               ...props.attributes,
+              name: title,
               properties: {
                 ...props.attributes.properties,
                 files: [coverFile, webplayerURL]
@@ -554,18 +555,16 @@ const InfoStep = (props: {
       </Row>
       <Row className="content-action" justify="space-around">
         <Col>
-          {props.attributes.image && (
-            <ArtCard
-              image={image}
-              animationURL={props.attributes.animation_url}
-              category={props.attributes.properties?.category}
-              name={props.attributes.name}
-              symbol={props.attributes.symbol}
-              small={true}
-              artView={!(props.files.length > 1)}
-              className="art-create-card"
-            />
-          )}
+          <ArtCard
+            image={image}
+            animationURL={props.attributes.animation_url}
+            category={props.attributes.properties?.category}
+            name={props.attributes.name}
+            symbol={props.attributes.symbol}
+            small={true}
+            artView={!(props.files.length > 1)}
+            className="art-create-card"
+          />
         </Col>
         <Col className="section" style={{ minWidth: 300 }}>
           <label className="action-field">
