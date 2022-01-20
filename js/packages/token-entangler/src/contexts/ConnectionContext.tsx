@@ -108,7 +108,7 @@ export const ENDPOINTS = [
   },
   {
     name: 'devnet' as ENV,
-    endpoint: 'https://api.devnet.solana.com/',
+    endpoint: 'https://broken-morning-flower.solana-devnet.quiknode.pro/f6d9aca174b054ed7b492f89a59f0b6d0c9a7371/',
     ChainId: ChainId.Devnet,
   },
 ];
