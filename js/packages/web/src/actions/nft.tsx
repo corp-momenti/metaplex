@@ -215,12 +215,15 @@ export const mintNFT = async (
   } catch {
     // ignore
   }
+  // Initial confirmation
+  progressCallback(5);
 
   // Force wait for max confirmations
   // await connection.confirmTransaction(txid, 'max');
   await connection.getParsedConfirmedTransaction(txid, 'confirmed');
 
-  progressCallback(5);
+  // Max confirmation
+  progressCallback(6);
 
   // this means we're done getting AR txn setup. Ship it off to ARWeave!
   const data = new FormData();
@@ -240,7 +243,6 @@ export const mintNFT = async (
   // TODO: convert to absolute file name for image
 
   const result: IArweaveResult = await uploadToArweave(data);
-  progressCallback(6);
 
   const metadataFile = result.messages?.find(
     m => m.filename === RESERVED_TXN_MANIFEST,

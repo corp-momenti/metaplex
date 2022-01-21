@@ -98,9 +98,6 @@ export const GivCreateView = () => {
     else gotoStep(0);
   }, [step_param, gotoStep]);
 
-  // TOOD(dennis): Remove it
-  console.log('attributes.properties.files', attributes.properties.files)
-  console.log('files', files)
   // store files
   const mint = async () => {
     const metadata = {
@@ -259,8 +256,8 @@ const CategoryStep = (props: {
               onClick={() => props.confirm(MetadataCategory.GIV)}
             >
               <div>
-                <div>Momenti GIV</div>
-                <div className="type-btn-description">GIV</div>
+                <div>Momenti Moment</div>
+                <div className="type-btn-description">Moment</div>
               </div>
             </Button>
           </Row>
@@ -439,7 +436,12 @@ const UploadStep = (props: {
             const { fileUrl, title } = momentInfo.data.getMomentInfo.momentInfo;
             const content = await fetch(fileUrl).then(res => res.blob())
             // TODO(dennis): Find a way to upload giv file to arweave network
-            const givFile = new File([content], fileUrl);
+            const filename = new URL(fileUrl)
+                .pathname
+                .split('/')
+                .reverse()[0];
+            // Now the ArWeave endpoint in metaplex doesn't support giv file extension.
+            const givFile = new File([content], `${filename}.zip`, { type: 'application/giv' });
             props.setAttributes({
               ...props.attributes,
               name: title,
@@ -995,8 +997,6 @@ const LaunchStep = (props: {
     props.attributes,
   );
   const files = props.files;
-  // TOOD(dennis): Remove it
-  console.log('props.files:', files)
   const metadata = props.attributes;
   useEffect(() => {
     const rentCall = Promise.all([
