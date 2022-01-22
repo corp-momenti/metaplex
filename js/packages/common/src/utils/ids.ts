@@ -45,6 +45,8 @@ export interface PublicKeyStringAndAccount<T> {
   account: AccountInfo<T>;
 }
 
+const use_custom_store = true;
+
 export const WRAPPED_SOL_MINT = new PublicKey(
   'So11111111111111111111111111111111111111112',
 );
@@ -65,18 +67,23 @@ export const MEMO_ID = new PublicKey(
   'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr',
 );
 
-export const METADATA_PROGRAM_ID =
-  'metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s' as StringPublicKey;
+export const METADATA_PROGRAM_ID = use_custom_store
+  ? ('3up4i565pbxRkLh5EiJeqLXvfwAK6gcPc2ccKULwby6H' as StringPublicKey)
+  : ('metaMoxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s' as StringPublicKey);
 
-export const VAULT_ID =
-  'vau1zxA2LbssAUEF7Gpw91zMM1LvXrvpzJtmZ58rPsn' as StringPublicKey;
+export const VAULT_ID = use_custom_store
+  ? ('6qs3VSQiwizCrbjAnDKF2JvRYjuGoQxd3tHHJEYv4o2K' as StringPublicKey)
+  : ('vau1MoA2LbssAUEF7Gpw91zMM1LvXrvpzJtmZ58rPsn' as StringPublicKey);
 
-export const AUCTION_ID =
-  'auctxRXPeJoc4817jDhf4HbjnhEcr1cCXenosMhK5R8' as StringPublicKey;
+export const AUCTION_ID = use_custom_store
+  ? ('qMR7hgRxHPFrAjtQpzo6a4pUZycnjqrL9gAfQHdS4RC' as StringPublicKey)
+  : ('auctMoXPeJoc4817jDhf4HbjnhEcr1cCXenosMhK5R8' as StringPublicKey);
 
-export const METAPLEX_ID =
-  'p1exdMJcjVao65QdewkaZRUnU6VPSXhus9n2GzWfh98' as StringPublicKey;
+export const METAPLEX_ID = use_custom_store
+  ? ('CypKQ9LpDD9xeq29RzSAbu918h9x1fPfGXsJ7SVviEn3' as StringPublicKey)
+  : ('p1exMoJcjVao65QdewkaZRUnU6VPSXhus9n2GzWfh98' as StringPublicKey);
 
+// It is not used in store
 export const PACK_CREATE_ID = new PublicKey(
   'packFeFNZzMfD9aVWL7QbGz1WcU7R9zpf6pvNsw2BLu',
 );

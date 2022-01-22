@@ -53,7 +53,8 @@ export function approve(
   account: PublicKey,
   owner: PublicKey,
   amount: number,
-  autoRevoke = true,
+  // Note: This auto revoke cause error so turn off it temporarily
+  autoRevoke = false,
 
   // if delegate is not passed ephemeral transfer authority is used
   delegate?: PublicKey,
