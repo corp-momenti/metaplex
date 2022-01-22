@@ -185,14 +185,23 @@ const HTMLContent = ({
 }) => {
   const [loaded, setLoaded] = useState<boolean>(false);
   if (!artView) {
-    return (
+    return uri?.endsWith('mp4') ? (
+      <VideoArtContent
+        className={className}
+        // TODO(dennis): Weird style in here...Please fix it...
+        style={{...style, paddingBottom: 0, height: '100%'}}
+        files={files}
+        uri={uri}
+        // Note: Currently, we are using animationUrl to save webplayer url.
+        // animationURL={animationUrl}
+        active={true} />
+    ) : (
       <CachedImageContent
         uri={uri}
         className={className}
         preview={preview}
-        style={style}
-      />
-    );
+        style={style} />
+    )
   }
   const htmlURL =
     files && files.length > 0 && typeof files[0] === 'string'
@@ -344,15 +353,13 @@ export const ArtContent = ({
         files={filesState}
         uri={uriState}
         animationURL={animationURLState}
-        active={active}
-      />
+        active={active} />
     ) : (
       <CachedImageContent
         uri={uriState}
         className={className}
         preview={preview}
-        style={style}
-      />
+        style={style} />
     );
 
   return (
