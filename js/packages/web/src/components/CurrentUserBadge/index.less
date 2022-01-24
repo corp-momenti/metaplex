@@ -37,15 +37,40 @@
 .ant-popover-inner {
   border-radius: 12px;
   background: #1f1f1f;
+
+  hr {
+    margin: 24px 0;
+  }
+
+  h5 {
+    color: @ivori-black-primary;
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: 700;
+  }
+
+  .ant-popover-inner-content {
+    padding: 24px 24px 16px;
+
+    .base {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 29px;
+      color: @ivori-black-primary;
+      margin: 0 8px;
+    }
+    
+    .quote {
+      font-size: 16px;
+      color: @ivori-black-secondary;
+    }
+  }
 }
 
 .ant-popover-arrow {
   display: none;
 }
 
-h5 {
-  font-weight: normal;
-}
 
 .ant-select-selector {
   height: 40px !important;

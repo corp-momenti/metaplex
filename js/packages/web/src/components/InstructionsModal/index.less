@@ -1,13 +1,11 @@
 .instructions-modal{
   width: 80% !important;
+  border: 5px solid @ivori-black-primary;
 }
-
 
 .modal-box {
   position: relative;
   box-sizing: border-box;
-  border-radius: 12px;
-  background-color: #2A2A2A;
   cursor: auto;
   padding-bottom: 0px;
   .ant-modal-footer {
@@ -109,37 +107,32 @@
 
   .ant-modal-content {
     background: #1f1f1f;
-    border-radius: 12px;
   }
 
   .ant-modal-header {
     border-bottom: 0;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    padding: 28px 24px 28px 24px;
-    background-color: transparent !important;
-    color: white !important;
+    padding: 24px 24px 32px;
     .ant-modal-title {
-      color: white;
+      color: @ivori-black;
       font-style: normal;
-      font-weight: 600;
-      font-size: 24px;
-      line-height: 24px;
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 39px;
     }
   }
 
   .ant-modal-close-x {
-
     width: fit-content;
     height: fit-content;
     margin-right: 24px;
     margin-top: 8px;
+    font-size: 17px;
+    font-weight: 700;
+    color: @ivori-black-primary;
   }
 
   .ant-modal-body {
-    background: rgba(255, 255, 255, 0.05) !important;
-    border-radius: 12px;
-    padding: 48px;
+    padding: 0 24px;
     @media (max-width: @screen-sm-min) {
       padding: 30px;
       min-height: 90vh !important;
@@ -149,9 +142,7 @@
       border: 0;
       height: 476px;
       .ant-card-cover {
-        border-radius: 12px;
         .card-cover {
-          //background: rgba(255, 255, 255, 0.1);
           height: 200px;
           border-radius: 12px;
           display: flex;
@@ -161,43 +152,33 @@
           img {
             width: auto;
             height: 100%;
-            border-radius: 12px;
+            border-radius: 0;
           }
         }
       }
 
       .body-title {
         font-style: normal;
-        font-weight: 600;
-        font-size: 18px;
-        line-height: 20px;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 29px;
         margin-top: 20px;
         margin-bottom: 12px;
-        color: white;
+        color: @ivori-black;
       }
 
       .body-content {
         font-style: normal;
         font-weight: normal;
         font-size: 16px;
-        line-height: 20px;
-        color: rgba(255, 255, 255, 0.7)
+        line-height: 19px;
+        color: @ivori-black;
       }
 
       .ant-card-body {
         display: flex;
         flex-direction: column;
-
-        > :last-child {
-          &.line {
-            width: 100%;
-          }
-          position: absolute;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-          bottom: 0;
-          position: absolute;
-          right: 0;
-        }
+        padding: 0;
 
         .button-container {
           display: flex;
