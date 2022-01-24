@@ -25,43 +25,45 @@ export const Settings = ({
         style={{
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
-          padding: '15px 0',
+          alignItems: 'center'
         }}
       >
-        <Identicon
+        {/* <Identicon
           address={publicKey?.toBase58()}
           style={{
-            width: 48,
+            width: 128, height: 128, borderRadius: 64
           }}
-        />
+        /> */}
+        <div style={{
+          width: 128,
+          height: 128,
+          borderRadius: 64,
+          backgroundColor: '#0D0D0E',
+          marginBottom: 16
+        }}></div>
         {publicKey && (
           <>
-            <Tooltip title="Address copied">
+            <Tooltip title="Address copied" trigger="click">
               <div
                 style={{
-                  fontWeight: 600,
-                  letterSpacing: '-0.02em',
-                  color: '#FFFFFF',
+                  fontWeight: 700,
+                  fontSize: 16,
+                  lineHeight: '19px',
+                  color: '#0D0D0E',
+                  cursor: 'pointer',
+                  width: 231,
+                  wordBreak: 'break-all',
+                  textAlign: 'center'
                 }}
                 onClick={() =>
                   navigator.clipboard.writeText(publicKey?.toBase58() || '')
                 }
               >
-                <CopyOutlined />
-                &nbsp;{shortenAddress(publicKey?.toBase58())}
+                &nbsp;{publicKey?.toBase58()}
               </div>
             </Tooltip>
           </>
         )}
-        <br />
-        <span
-          style={{
-            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-            width: 'calc(100% + 32px)',
-            marginBottom: 10,
-          }}
-        ></span>
         {additionalSettings}
       </div>
     </>

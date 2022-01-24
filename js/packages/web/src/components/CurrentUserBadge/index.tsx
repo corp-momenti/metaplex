@@ -26,7 +26,8 @@ import { TokenCircle } from '../Custom';
 
 const btnStyle: React.CSSProperties = {
   border: 'none',
-  height: 40,
+  height: 36,
+  textAlign: 'left'
 };
 
 const UserActions = (props: { mobile?: boolean; onClick?: any }) => {
@@ -262,22 +263,13 @@ export const CurrentUserBadge = (props: {
       <Popover
         trigger="click"
         placement="bottomRight"
+        overlayInnerStyle={{borderRadius: 0, backgroundColor: 'white', border: '5px solid #0D0D0C'}}
         content={
           <Settings
             additionalSettings={
-              <div
-                style={{
-                  width: 250,
-                }}
-              >
-                <h5
-                  style={{
-                    color: 'rgba(255, 255, 255, 0.7)',
-                    letterSpacing: '0.02em',
-                  }}
-                >
-                  BALANCE
-                </h5>
+              <div style={{ width: 287 }}>
+                <hr/>
+                <h5>Balance</h5>
                 <div
                   style={{
                     marginBottom: 10,
@@ -286,48 +278,29 @@ export const CurrentUserBadge = (props: {
                   <TokenCircle
                     iconFile={solMintInfo ? solMintInfo.logoURI : ''}
                   />
-                  &nbsp;
-                  <span
-                    style={{
-                      fontWeight: 600,
-                      color: '#FFFFFF',
-                    }}
-                  >
-                    {formatNumber.format(balance)} SOL
+                  <span className="base">
+                    {formatNumber.format(balance)}
                   </span>
-                  &nbsp;
-                  <span
-                    style={{
-                      color: 'rgba(255, 255, 255, 0.5)',
-                    }}
-                  >
+                  <span className="quote">
                     {formatUSD.format(balanceInUSD)}
                   </span>
-                  &nbsp;
                 </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    marginBottom: 10,
-                  }}
-                >
+                <hr/>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
                   <Button
                     className="metaplex-button-default"
                     onClick={() => setShowAddFundsModal(true)}
-                    style={btnStyle}
-                  >
+                    style={btnStyle}>
                     Add Funds
                   </Button>
-                  &nbsp;&nbsp;
                   <Button
                     className="metaplex-button-default"
                     onClick={disconnect}
-                    style={btnStyle}
-                  >
+                    style={btnStyle}>
                     Disconnect
                   </Button>
+                  <UserActions />
                 </div>
-                <UserActions />
               </div>
             }
           />
