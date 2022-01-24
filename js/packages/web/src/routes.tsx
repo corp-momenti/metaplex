@@ -80,7 +80,6 @@ export function Routes() {
               path="/auction/:id/billing"
               component={() => <BillingView />}
             />
-            <Route path="/about" component={() => <StaticPageView />} />
             <Route path="/" component={() => <HomeView />} />
           </Switch>
         </Providers>
