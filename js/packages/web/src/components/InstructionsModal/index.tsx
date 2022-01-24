@@ -2,12 +2,6 @@ import React, { useState, ReactNode } from 'react';
 import { Card, Modal, Button, Col, Row } from 'antd';
 import { CreditCardOutlined } from '@ant-design/icons';
 
-interface ContentCardProps {
-  title: string;
-  description: string;
-  imgSrc?: string;
-}
-
 export const ContentCard = (props: {
   title: string;
   description: string;
@@ -51,7 +45,7 @@ interface ModalContentProps {
 export const ModalContent: React.FC<ModalContentProps> = ({ children }) => {
   return (
     <div className="site-card-wrapper">
-      <Row gutter={16}>
+      <Row gutter={24}>
         <Col span={24} xl={8}>
           {children[0]}{' '}
         </Col>
@@ -107,8 +101,8 @@ export const InstructionsModal: React.FC<ModalProps> = ({
         onOk={handleOk}
         onCancel={handleCancel}
         footer={null}
-        className={'modal-box instructions-modal'}
-        closeIcon={<img src={'/modals/close.svg'} />}
+        className="modal-box instructions-modal"
+        closeIcon={<span>Close</span>}
       >
         <ModalContent>
           <ContentCard
