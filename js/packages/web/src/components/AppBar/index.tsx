@@ -32,8 +32,8 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
   const { connected } = useWallet();
   return (
     <div
+    className="app-bar-btn-group"
       style={{
-        display: 'flex',
         flexDirection: vertical ? 'column' : 'row',
       }}
     >
@@ -51,7 +51,7 @@ export const MetaplexMenu = () => {
     return (
       <>
         <Modal
-          title={<img className="app-bar-logo" src={'/momenti-logo-horizontal.png'} />}
+          title={<img className="app-bar-logo" src={'/ivori-logo.svg'} />}
           visible={isModalVisible}
           footer={null}
           className={'modal-box'}
@@ -110,7 +110,7 @@ export const MetaplexMenu = () => {
 export const LogoLink = () => {
   return (
     <Link to={`/`}>
-      <img className="app-bar-logo" src={'/momenti-logo-horizontal.png'} />
+      <img className="app-bar-logo" src={'/ivori-logo.svg'} />
     </Link>
   );
 };
@@ -123,12 +123,11 @@ export const AppBar = () => {
       <div id="desktop-navbar">
         <div className="app-left">
           <LogoLink />
-          &nbsp;&nbsp;&nbsp;
           <MetaplexMenu />
         </div>
         <div className="app-right">
           {!connected && (
-            <HowToBuyModal buttonClassName="modal-button-default" />
+            <HowToBuyModal buttonClassName="modal-button-default ivri-btn" />
           )}
           {!connected && (
             <ConnectButton style={{ height: 48 }} allowWalletChange />
