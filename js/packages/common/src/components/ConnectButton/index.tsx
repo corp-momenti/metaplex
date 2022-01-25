@@ -27,7 +27,7 @@ export const ConnectButton = (props: ConnectButtonProps) => {
   if (!wallet || !allowWalletChange) {
     return (
       <Button
-        className={className || 'connector'}
+        className={className || 'ivri-btn ivri-btn--outline'}
         {...rest}
         onClick={e => {
           props.onClick ? props.onClick(e) : null;

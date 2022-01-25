@@ -54,7 +54,7 @@ const UserActions = (props: { mobile?: boolean; onClick?: any }) => {
                     onClick={() => {
                       props.onClick ? props.onClick() : null;
                     }}
-                    className="black-btn"
+                    className="black-btn ivri-btn ivri-btn--plain"
                   >
                     Create
                   </Button>
@@ -64,7 +64,7 @@ const UserActions = (props: { mobile?: boolean; onClick?: any }) => {
                     onClick={() => {
                       props.onClick ? props.onClick() : null;
                     }}
-                    className="black-btn"
+                    className="black-btn ivri-btn ivri-btn--plain"
                   >
                     Create Giv
                   </Button>
@@ -76,7 +76,7 @@ const UserActions = (props: { mobile?: boolean; onClick?: any }) => {
                 onClick={() => {
                   props.onClick ? props.onClick() : null;
                 }}
-                className="black-btn"
+                className="black-btn ivri-btn ivri-btn--plain"
               >
                 Sell
               </Button>
@@ -91,12 +91,12 @@ const UserActions = (props: { mobile?: boolean; onClick?: any }) => {
             {canCreate && (
               <>
                 <Link to={`/art/create`} style={{ width: '100%' }}>
-                  <Button className="metaplex-button-default" style={btnStyle}>
+                  <Button className="metaplex-button-default ivri-btn ivri-btn--plain" style={btnStyle}>
                     Create
                   </Button>
                 </Link>
                 <Link to={`/giv/create`} style={{ width: '100%' }}>
-                  <Button className="metaplex-button-default" style={btnStyle}>
+                  <Button className="metaplex-button-default ivri-btn ivri-btn--plain" style={btnStyle}>
                     Create Giv
                   </Button>
                 </Link>
@@ -104,7 +104,7 @@ const UserActions = (props: { mobile?: boolean; onClick?: any }) => {
               </>
             )}
             <Link to={`/auction/create/0`} style={{ width: '100%' }}>
-              <Button className="metaplex-button-default" style={btnStyle}>
+              <Button className="metaplex-button-default ivri-btn ivri-btn--plain" style={btnStyle}>
                 Sell
               </Button>
             </Link>
@@ -288,13 +288,13 @@ export const CurrentUserBadge = (props: {
                 <hr/>
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                   <Button
-                    className="metaplex-button-default"
+                    className="metaplex-button-default ivri-btn ivri-btn--plain"
                     onClick={() => setShowAddFundsModal(true)}
                     style={btnStyle}>
                     Add Funds
                   </Button>
                   <Button
-                    className="metaplex-button-default"
+                    className="metaplex-button-default ivri-btn ivri-btn--plain"
                     onClick={disconnect}
                     style={btnStyle}>
                     Disconnect

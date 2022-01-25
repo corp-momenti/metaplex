@@ -17,13 +17,13 @@ import { MobileNavbar } from '../MobileNavbar';
 const getDefaultLinkActions = (connected: boolean) => {
   return [
     <Link to={`/`} key={'explore'}>
-      <Button className="app-btn">Explore</Button>
+      <Button className="app-btn ivri-btn--plain">Explore</Button>
     </Link>,
     <Link to={`/artworks`} key={'artwork'}>
-      <Button className="app-btn">{connected ? 'My Items' : 'Artwork'}</Button>
+      <Button className="app-btn ivri-btn--plain">{connected ? 'Items' : 'Artwork'}</Button>
     </Link>,
     <Link to={`/artists`} key={'artists'}>
-      <Button className="app-btn">Creators</Button>
+      <Button className="app-btn ivri-btn--plain">Creators</Button>
     </Link>,
   ];
 };
@@ -127,7 +127,7 @@ export const AppBar = () => {
         </div>
         <div className="app-right">
           {!connected && (
-            <HowToBuyModal buttonClassName="modal-button-default ivri-btn" />
+            <HowToBuyModal buttonClassName="ivri-btn ivri-btn--plain" />
           )}
           {!connected && (
             <ConnectButton style={{ height: 48 }} allowWalletChange />

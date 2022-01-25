@@ -30,7 +30,7 @@ export const SalesListView = () => {
   return (
     <>
       <Banner
-        actionComponent={<HowToBuyModal buttonClassName="secondary-btn" />}
+        actionComponent={<HowToBuyModal buttonClassName="secondary-btn ivri-btn--contained-dark" />}
       />
       <Layout>
         <Content className="ant-layout-inner-content" style={{ display: 'flex', flexWrap: 'wrap' }}>

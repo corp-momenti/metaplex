@@ -1,12 +1,14 @@
 // variables
 
-@black-primary: #0D0D0C;
+@ivori-black-primary: #0D0D0C;
+@ivori-black-secondary: rgba(13, 13, 12, 0.6);
 @white-primary: #FFF;
-
+@easeOut: cubic-bezier(0.83, 0, 0.17, 1);
 
 .app-bar-logo {
     width: 58.4px;
     height: auto;
+    transform: translateY(-4px)
 }
 
 .app-bar-btn-group {
@@ -21,17 +23,90 @@
     font-size: 1.0625rem;
     line-height: auto;
     padding: 7px 12px;
-    color: @black-primary !important;
+    color: @ivori-black-primary !important;
 }
+
+.ivri-btn--border-default {
+    content: '';
+    position: relative;
+    display: block;
+    width: 0px;
+    height: 3px;
+    transform: translateY( 2px );
+    background-color: @ivori-black-primary;
+    transition: width 0.25s @easeOut;
+}
+
+.ivri-btn--border-active {
+    width: 100%;
+    transition: width 0.2s @easeOut;
+}
+
+
+.ivri-btn--plain {
+    > span::after {
+        .ivri-btn--border-default;
+    }
+
+    &:hover, &.active {
+        color: @ivori-black-secondary;
+
+        > span::after {
+            .ivri-btn--border-active
+        }
+    }
+}
+
+
 
 .ivri-btn--outline {
     border-radius: 0;
-    border: 2px solid @black-primary;
+    border: 2px solid @ivori-black-primary !important;
+    overflow: hidden;
+    position: relative;
+    transition: color .15s @easeOut;
+
+    span {
+        position: relative;
+        z-index: 5;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        z-index: 0;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        background-color: @ivori-black-primary;
+        transform-origin: center;
+        transform: scale( 0 );
+        transition: transform .15s @easeOut;
+    }
+
+    &:hover{
+        color: @white-primary;
+        transition: color .2s @easeOut;
+
+        &::after {
+            transform: scale( 1 );
+            transition: transform .2s @easeOut;
+        }
+    }
 }
 
+
 .ivri-btn--contained {
-    background-color: @black-primary;
+    background-color: @ivori-black-primary;
     border-radius: 0;
+    padding: 7px 12px;
+}
+
+.ivri-btn--contained-dark {
+    background-color: @white-primary !important;
+    border-radius: 0;
+    color: @ivori-black-primary !important;
     padding: 7px 12px;
 }
 
@@ -89,13 +164,17 @@
     box-shadow: none;
     -webkit-transition: none !important;
     transition: none !important;
+
+    &:hover {
+        color: unset !important;
+    }
 }
 
 // default paragraph
 p {
     font-size: 1rem !important;
     font-weight: 400;
-    color: @black-primary
+    color: @ivori-black-primary
 }
 
 
@@ -113,7 +192,7 @@ p {
     width: 100%;
     height: auto !important;
     padding: 8rem 4rem;
-    background-color: @black-primary !important;
+    background-color: @ivori-black-primary !important;
     color: @white-primary;
     border-radius: 0;
     background-image: none;
@@ -158,16 +237,34 @@ p {
     height: auto;
 }
 
+// this line is suck.
+.ant-tabs-tab .ant-tabs-tab-btn {
+    display: block !important;
+}
+
+.ant-tabs-tab-btn::after {
+    .ivri-btn--border-default;
+}
+
 .ant-tabs-tab {
     .ivri-btn;
     opacity: 1 !important;
+    
+    &:hover {
+        > .ant-tabs-tab-btn::after {
+            .ivri-btn--border-active;
+        }
+    }
 
     &.ant-tabs-tab-active {
         background: none;
         box-shadow: none;
         border-radius: 0;
-        .ant-tabs-tab-btn {
+        > .ant-tabs-tab-btn {
             color: unset;
+            &::after {
+                .ivri-btn--border-active;
+            }
         }
     }
 }
