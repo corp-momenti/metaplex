@@ -12,7 +12,6 @@ import {
   AuctionView,
   GivCreateView,
   HomeView,
-  StaticPageView,
 } from './views';
 import { AdminView } from './views/admin';
 import PackView from './views/pack';
