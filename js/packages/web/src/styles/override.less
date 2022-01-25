@@ -49,7 +49,9 @@
     }
 
     &:hover, &.active {
-        color: @ivori-black-secondary;
+        > span {
+            color: @ivori-black-primary;
+        }
 
         > span::after {
             .ivri-btn--border-active
