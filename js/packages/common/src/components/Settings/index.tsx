@@ -59,7 +59,7 @@ export const Settings = ({
                   navigator.clipboard.writeText(publicKey?.toBase58() || '')
                 }
               >
-                &nbsp;{publicKey?.toBase58()}
+                &nbsp;{shortenAddress(publicKey?.toBase58())}
               </div>
             </Tooltip>
           </>
