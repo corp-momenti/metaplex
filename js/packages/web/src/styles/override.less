@@ -112,41 +112,66 @@ p {
 #current-banner {
     width: 100%;
     height: auto !important;
-    padding: 4rem 8rem;
+    padding: 8rem 4rem;
     background-color: @black-primary !important;
     color: @white-primary;
     border-radius: 0;
     background-image: none;
-    
-    // background-color: @black-100;
-    // background-position: top right;
-    // background-size: 924px 100%;
-    // background-repeat: no-repeat;
-    //border: 1px solid white;
     position: relative;
-    // @media (max-width: @screen-sm-min){
-    //   display: none;
-    // }
     
     #banner-inner {
       position: relative;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
     }
 }
 
 .ivri-h1 {
     color: @white-primary;
     font-size: 9.5rem;
-    line-height: auto;
+    line-height: normal;
     letter-spacing: -2px;
     margin: 0;
 }
 
-.ivri-outlined {
+.ivri-h6 {
+    // display: block;
+    color: @white-primary;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -1.5px;
+    color: @white-primary !important;
+    opacity: 1;
+    margin: 4rem 0;
+    padding-left: 0.5rem;
+}
+
+.ivri-h--flex {
+    display: flex;
+    align-items: center;
+    column-gap: 2rem;
+}
+
+.ivri-outlined-img {
     display: inline-block;
+    vertical-align: middle;
     width: 604px;
     height: auto;
+}
+
+.ant-tabs-tab {
+    .ivri-btn;
+    opacity: 1 !important;
+
+    &.ant-tabs-tab-active {
+        background: none;
+        box-shadow: none;
+        border-radius: 0;
+        .ant-tabs-tab-btn {
+            color: unset;
+        }
+    }
+}
+
+.ant-tabs-nav-list {
+    padding: 0 3rem;
 }

@@ -11,20 +11,18 @@ export const Banner = (props: {
         <div className="banner-content">
             <h1 className="ivri-h1">Beyond</h1>
             <h1 className="ivri-h1">The <img src={'/ivri-copyright-outlined.png'} className='ivri-outlined' /></h1>
-            <h2 className="ivri-h2">Seize your moment with ivori</h2>
+            <h6 className="ivri-h6">Seize your moment with ivori</h6>
           {props.actionComponent}
         </div>
       </div>
       <div id={'current-banner'}>
         <div id="banner-inner">
-          <div id={'message-container'}>
             <h1 className="ivri-h1">Beyond</h1>
-            <h1 className="ivri-h1">The <img src={'/ivri-copyright-outlined.png'} className='ivri-outlined' /></h1>
-            <h2 className="ivri-h2">Seize your moment with ivori</h2>
+            <h1 className="ivri-h1 ivri-h--flex">The <img src={'/ivri-copyright-outlined.png'} alt="Surface." className='ivri-outlined-img' /></h1>
+            <h6 className="ivri-h6">Seize your moment with ivori</h6>
             {props.actionComponent}
           </div>
           {props.children}
-        </div>
       </div>
     </>
   );
