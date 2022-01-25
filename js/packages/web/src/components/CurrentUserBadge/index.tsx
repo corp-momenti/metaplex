@@ -306,13 +306,13 @@ export const CurrentUserBadge = (props: {
           />
         }
       >
-        <Button className="wallet-key">
+        <Button className="wallet-key ivri-btn ivri-btn--plain">
           {image}
           {name && (
             <span
               style={{
                 marginLeft: '0.5rem',
-                fontWeight: 600,
+                // fontWeight: 600,
               }}
             >
               {name}

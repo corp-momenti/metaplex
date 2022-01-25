@@ -14,13 +14,13 @@ import {
 import { ConnectButton } from '@oyster/common';
 import { MobileNavbar } from '../MobileNavbar';
 
-const getDefaultLinkActions = (connected: boolean) => {
+const getDefaultLinkActions = () => {
   return [
     <Link to={`/`} key={'explore'}>
       <Button className="app-btn ivri-btn--plain">Explore</Button>
     </Link>,
     <Link to={`/artworks`} key={'artwork'}>
-      <Button className="app-btn ivri-btn--plain">{connected ? 'Items' : 'Artwork'}</Button>
+      <Button className="app-btn ivri-btn--plain">Items</Button>
     </Link>,
     <Link to={`/artists`} key={'artists'}>
       <Button className="app-btn ivri-btn--plain">Creators</Button>
@@ -37,7 +37,7 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
         flexDirection: vertical ? 'column' : 'row',
       }}
     >
-      {getDefaultLinkActions(connected)}
+      {connected && getDefaultLinkActions() }
     </div>
   );
 };
@@ -64,7 +64,7 @@ export const MetaplexMenu = () => {
         >
           <div className="site-card-wrapper mobile-menu-modal">
             <Menu onClick={() => setIsModalVisible(false)}>
-              {getDefaultLinkActions(connected).map((item, idx) => (
+              {getDefaultLinkActions().map((item, idx) => (
                 <Menu.Item key={idx}>{item}</Menu.Item>
               ))}
             </Menu>
