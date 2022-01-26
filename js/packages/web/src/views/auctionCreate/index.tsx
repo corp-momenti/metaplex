@@ -15,7 +15,7 @@ import {
   Checkbox,
 } from 'antd';
 import { ArtCard } from './../../components/ArtCard';
-import { MINIMUM_SAFE_FEE_AUCTION_CREATION, QUOTE_MINT } from './../../constants';
+import { MINIMUM_SAFE_FEE_AUCTION_CREATION, QUOTE_MINT, LABELS } from './../../constants';
 import { Confetti } from './../../components/Confetti';
 import { ArtSelector } from './artSelector';
 import {
@@ -698,11 +698,6 @@ export const AuctionCreateView = () => {
         )}
         <Col span={24} {...(stepsVisible ? { md: 20 } : { md: 24 })}>
           {stepsByCategory[attributes.category][step][1]}
-          {0 < step && stepsVisible && (
-            <div style={{ margin: 'auto', width: 'fit-content' }}>
-              <Button onClick={() => gotoNextStep(step - 1)}>Back</Button>
-            </div>
-          )}
         </Col>
       </Row>
     </>
@@ -718,81 +713,34 @@ const CategoryStep = (props: {
       <Row className="call-to-action">
         <h2>List an item</h2>
         <p>
-          First time listing on Metaplex? <a>Read our sellers' guide.</a>
+          First time listing on {LABELS.STORE_NAME}? <a>Chat with us.</a>
         </p>
       </Row>
       <Row justify={width < 768 ? 'center' : 'start'}>
         <Col>
-          <Row>
+          <Row className="ivri-btn-wrapper">
+            <div className="type-btn-description">
+              At a fixed price, sell a single Master NFT or copies of it
+            </div>
             <Button
-              className="type-btn"
+              className="ivri-btn--outline"
               size="large"
               onClick={() => props.confirm(AuctionCategory.InstantSale)}
             >
-              <div>
-                <div>Instant Sale</div>
-                <div className="type-btn-description">
-                  At a fixed price, sell a single Master NFT or copies of it
-                </div>
-              </div>
+              Instant Sale
             </Button>
           </Row>
-          <Row>
+          <Row className="ivri-btn-wrapper">
+            <div className="type-btn-description">
+              Sell an existing item in your NFT collection, including Master
+              NFTs
+            </div>
             <Button
-              className="type-btn"
-              size="large"
-              onClick={() => props.confirm(AuctionCategory.Limited)}
-            >
-              <div>
-                <div>Limited Edition</div>
-                <div className="type-btn-description">
-                  Sell a limited copy or copies of a single Master NFT
-                </div>
-              </div>
-            </Button>
-          </Row>
-          <Row>
-            <Button
-              className="type-btn"
-              size="large"
-              onClick={() => props.confirm(AuctionCategory.Open)}
-            >
-              <div>
-                <div>Open Edition</div>
-                <div className="type-btn-description">
-                  Sell unlimited copies of a single Master NFT
-                </div>
-              </div>
-            </Button>
-          </Row>
-          <Row>
-            <Button
-              className="type-btn"
-              size="large"
-              onClick={() => props.confirm(AuctionCategory.Tiered)}
-            >
-              <div>
-                <div>Tiered Auction</div>
-                <div className="type-btn-description">
-                  Participants get unique rewards based on their leaderboard
-                  rank
-                </div>
-              </div>
-            </Button>
-          </Row>
-          <Row>
-            <Button
-              className="type-btn"
+              className="ivri-btn--outline"
               size="large"
               onClick={() => props.confirm(AuctionCategory.Single)}
             >
-              <div>
-                <div>Sell an Existing Item</div>
-                <div className="type-btn-description">
-                  Sell an existing item in your NFT collection, including Master
-                  NFTs
-                </div>
-              </div>
+              Sell an Existing Item
             </Button>
           </Row>
         </Col>
@@ -848,7 +796,7 @@ const InstantSaleStep = ({
   return (
     <>
       <Row className="call-to-action" style={{ marginBottom: 0 }}>
-        <h2>Select which item to sell:</h2>
+        <h2>Select which item to sell</h2>
       </Row>
 
       <Row className="content-action">
@@ -936,7 +884,7 @@ const InstantSaleStep = ({
               autoFocus
               className="input"
               placeholder="Price"
-              prefix="◎"
+              prefix="@"
               suffix={mintInfo?.symbol || "CUSTOM"}
               onChange={info =>
                 setAttributes({
@@ -951,12 +899,10 @@ const InstantSaleStep = ({
       </Row>
       <Row>
         <Button
-          type="primary"
-          size="large"
           onClick={() => {
             confirm();
           }}
-          className="action-btn"
+          className="ivri-btn--contained"
         >
           Continue
         </Button>

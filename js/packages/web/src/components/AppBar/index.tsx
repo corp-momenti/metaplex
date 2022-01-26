@@ -14,16 +14,16 @@ import {
 import { ConnectButton } from '@oyster/common';
 import { MobileNavbar } from '../MobileNavbar';
 
-const getDefaultLinkActions = (connected: boolean) => {
+const getDefaultLinkActions = () => {
   return [
     <Link to={`/`} key={'explore'}>
-      <Button className="app-btn">Explore</Button>
+      <Button className="app-btn ivri-btn--plain">Explore</Button>
     </Link>,
     <Link to={`/artworks`} key={'artwork'}>
-      <Button className="app-btn">{connected ? 'My Items' : 'Artwork'}</Button>
+      <Button className="app-btn ivri-btn--plain">Items</Button>
     </Link>,
     <Link to={`/artists`} key={'artists'}>
-      <Button className="app-btn">Creators</Button>
+      <Button className="app-btn ivri-btn--plain">Creators</Button>
     </Link>,
   ];
 };
@@ -32,12 +32,12 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
   const { connected } = useWallet();
   return (
     <div
+    className="app-bar-btn-group"
       style={{
-        display: 'flex',
         flexDirection: vertical ? 'column' : 'row',
       }}
     >
-      {getDefaultLinkActions(connected)}
+      {connected && getDefaultLinkActions() }
     </div>
   );
 };
@@ -51,7 +51,7 @@ export const MetaplexMenu = () => {
     return (
       <>
         <Modal
-          title={<img className="app-bar-logo" src={'/momenti-logo-horizontal.png'} />}
+          title={<img className="app-bar-logo" src={'/ivori-logo.svg'} />}
           visible={isModalVisible}
           footer={null}
           className={'modal-box'}
@@ -64,7 +64,7 @@ export const MetaplexMenu = () => {
         >
           <div className="site-card-wrapper mobile-menu-modal">
             <Menu onClick={() => setIsModalVisible(false)}>
-              {getDefaultLinkActions(connected).map((item, idx) => (
+              {getDefaultLinkActions().map((item, idx) => (
                 <Menu.Item key={idx}>{item}</Menu.Item>
               ))}
             </Menu>
@@ -110,7 +110,7 @@ export const MetaplexMenu = () => {
 export const LogoLink = () => {
   return (
     <Link to={`/`}>
-      <img className="app-bar-logo" src={'/momenti-logo-horizontal.png'} />
+      <img className="app-bar-logo" src={'/ivori-logo.svg'} />
     </Link>
   );
 };
@@ -123,12 +123,11 @@ export const AppBar = () => {
       <div id="desktop-navbar">
         <div className="app-left">
           <LogoLink />
-          &nbsp;&nbsp;&nbsp;
           <MetaplexMenu />
         </div>
         <div className="app-right">
           {!connected && (
-            <HowToBuyModal buttonClassName="modal-button-default" />
+            <HowToBuyModal buttonClassName="ivri-btn ivri-btn--plain" />
           )}
           {!connected && (
             <ConnectButton style={{ height: 48 }} allowWalletChange />

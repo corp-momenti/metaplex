@@ -35,7 +35,7 @@ export const AmountLabel = (props: IAmountLabel) => {
   const amount = typeof _amount === 'string' ? parseFloat(_amount) : _amount;
   let formattedAmount = `${amount}`;
   if (amount >= 1) {
-    formattedAmount = formatAmount(amount);
+    formattedAmount = formatAmount( amount, 2, false );
   }
 
   const solPrice = useSolPrice();

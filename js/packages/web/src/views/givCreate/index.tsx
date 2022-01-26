@@ -48,6 +48,7 @@ import {
   PlusOutlined,
 } from '@ant-design/icons';
 import { useTokenList } from '../../contexts/tokenList';
+import { LABELS } from './../../constants';
 
 const { Step } = Steps;
 const { Dragger } = Upload;
@@ -241,24 +242,21 @@ const CategoryStep = (props: {
       <Row className="call-to-action">
         <h2>Create a new item</h2>
         <p>
-          First time creating on Metaplex?{' '}
-          <a href="https://docs.metaplex.com/create-store/sell" target="_blank" rel="noreferrer">
-            Read our creators’ guide.
-          </a>
+          First time listing on {LABELS.STORE_NAME}? <a>Chat with us.</a>
         </p>
       </Row>
       <Row justify={width < 768 ? 'center' : 'start'}>
         <Col>
-          <Row>
+          <Row className="ivri-btn-wrapper">
+            <div className="type-btn-description">
+              Moment
+            </div>
             <Button
-              className="type-btn"
+              className="ivri-btn--outline"
               size="large"
               onClick={() => props.confirm(MetadataCategory.GIV)}
             >
-              <div>
-                <div>Momenti Moment</div>
-                <div className="type-btn-description">Moment</div>
-              </div>
+              Momenti Moment
             </Button>
           </Row>
         </Col>

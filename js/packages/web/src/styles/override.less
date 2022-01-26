@@ -1,0 +1,409 @@
+// variables
+
+@ivori-black-primary: #0D0D0C;
+@ivori-black-secondary: rgba(13, 13, 12, 0.6);
+@white-primary: #FFF;
+@easeOut: cubic-bezier(0.83, 0, 0.17, 1);
+
+body, .ant-modal {
+    color: @ivori-black-primary;
+}
+
+.app-bar-logo {
+    width: 58.4px;
+    height: auto;
+    transform: translateY(-4px)
+}
+
+.app-bar-btn-group {
+    display: flex;
+    margin-left: 3rem;
+    column-gap: 1rem;
+}
+
+.ivri-btn {
+    font-style: normal;
+    font-weight: 700 !important;
+    font-size: 1.0625rem;
+    line-height: auto;
+    padding: 7px 12px;
+    color: @ivori-black-primary !important;
+}
+
+.ivri-btn--border-default {
+    content: '';
+    position: relative;
+    display: block;
+    width: 0px;
+    height: 3px;
+    transform: translateY( 2px );
+    background-color: @ivori-black-primary;
+    transition: width 0.25s @easeOut;
+}
+
+.ivri-btn--border-active {
+    width: 100%;
+    transition: width 0.2s @easeOut;
+}
+
+
+.ivri-btn--plain {
+    > span::after {
+        .ivri-btn--border-default;
+    }
+
+    &:hover, &.active {
+        > span {
+            color: @ivori-black-primary;
+        }
+
+        > span::after {
+            .ivri-btn--border-active
+        }
+    }
+}
+
+
+
+.ivri-btn--outline {
+    border-radius: 0;
+    border: 2px solid @ivori-black-primary !important;
+    overflow: hidden;
+    position: relative;
+    transition: color .15s @easeOut;
+
+    span {
+        position: relative;
+        z-index: 5;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        z-index: 0;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        background-color: @ivori-black-primary;
+        transform-origin: center;
+        transform: scale( 0 );
+        transition: transform .15s @easeOut;
+    }
+
+    &:hover{
+        color: @white-primary;
+        transition: color .2s @easeOut;
+
+        &::after {
+            transform: scale( 1 );
+            transition: transform .2s @easeOut;
+        }
+    }
+}
+
+
+.ivri-btn--contained {
+    background-color: @ivori-black-primary !important;
+    border-radius: 0;
+    color: @ivori-white !important;
+    padding: 16px 24px;
+}
+
+.ivri-btn--contained-dark {
+    background-color: @white-primary !important;
+    border-radius: 0;
+    color: @ivori-black-primary !important;
+    padding: 16px 24px;
+}
+
+.ant-btn {
+    font-weight: 700;
+    border: 0 none;
+    box-shadow: none;
+    -webkit-transition: none !important;
+    transition: none !important;
+
+    &:hover {
+        color: unset !important;
+    }
+}
+
+// default paragraph
+p {
+    font-size: 1rem !important;
+    font-weight: 400;
+    color: @ivori-black-primary
+}
+
+
+.connector {
+    .ivri-btn;
+    .ivri-btn--outline;
+}
+
+
+.ant-layout-content {
+    background-color: @white-primary !important;
+}
+
+#current-banner {
+    width: 100%;
+    height: auto !important;
+    padding: 8rem 4rem;
+    background-color: @ivori-black-primary !important;
+    color: @white-primary;
+    border-radius: 0;
+    background-image: none;
+    position: relative;
+    
+    #banner-inner {
+      position: relative;
+    }
+}
+
+.ivri-h1 {
+    color: @white-primary;
+    font-size: 9.5rem;
+    line-height: normal;
+    letter-spacing: -2px;
+    margin: 0;
+}
+
+.ivri-h6 {
+    // display: block;
+    color: @white-primary;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -1.5px;
+    color: @white-primary !important;
+    opacity: 1;
+    margin: 4rem 0;
+    padding-left: 0.5rem;
+}
+
+.ivri-h--flex {
+    display: flex;
+    align-items: center;
+    column-gap: 2rem;
+}
+
+.ivri-outlined-img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 604px;
+    height: auto;
+}
+
+// this line is suck.
+.ant-tabs-tab .ant-tabs-tab-btn {
+    display: block !important;
+}
+
+.ant-tabs-tab-btn::after {
+    .ivri-btn--border-default;
+}
+
+.ant-tabs-tab {
+    .ivri-btn;
+    opacity: 1 !important;
+    
+    &:hover {
+        > .ant-tabs-tab-btn::after {
+            .ivri-btn--border-active;
+        }
+    }
+
+    &.ant-tabs-tab-active {
+        background: none;
+        box-shadow: none;
+        border-radius: 0;
+        > .ant-tabs-tab-btn {
+            color: unset;
+            &::after {
+                .ivri-btn--border-active;
+            }
+        }
+    }
+}
+
+.ant-tabs-nav-list {
+    padding: 0 3rem;
+}
+
+.artwork-grid {
+    padding: 0 3rem 4rem 3rem;
+    column-gap: 1.5rem;
+    row-gap: 2rem;
+    align-items: flex-start;
+
+    & > a,
+    & > div {
+        margin: 0px;
+        flex: 0 0 25%;
+    }
+}
+
+.ant-image-img, .ant-image, .auction-image {
+    border-radius: 0;
+}
+
+.auction-meta {
+    padding: 1rem 1.25rem;
+}
+
+.ant-card {
+    font-size: 16px;
+}
+
+.artist-name {
+    font-size: 1rem !important;
+    line-height: 1.5rem !important;
+    font-weight: 700;
+    color: @ivori-black-secondary;
+}
+
+// divder
+.card-bid-info::before {
+    content: '';
+    border-top: 1px solid @ivori-black-primary;
+    display: block;
+    margin: 1rem 0;
+}
+
+.card-bid-info > .info-message {
+    color: @ivori-black-primary;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: .5rem;
+}
+
+.card-bid-info > .create-statistic {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: @ivori-black-primary !important;
+}
+
+.auction-info-container {
+    margin-top: 1.5rem;
+    padding: 0 1rem;
+    display: flex;
+    width: 100%;
+    background-color: @ivori-black-primary;
+    height: 2rem;
+    line-height: 2rem;
+    color: @white-primary;
+    text-transform: unset;
+    align-items: center;
+    column-gap: .5rem;
+}
+
+.ant-statistic-content {
+    color: @ivori-black-primary !important;
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    line-height: 1.5rem !important;
+}
+
+.type-btn-description {
+    color: @ivori-black-tetiary;
+    font-size: 1rem;
+    line-height: 19px;
+    margin-bottom: 1rem;
+}
+
+.call-to-action {
+    margin-bottom: 4rem;
+}
+
+.ivri-btn-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 4rem;
+}
+
+.ivri-btn-wrapper:last-child {
+    margin-bottom: 0;
+}
+
+.art-card {
+    border-radius: 0;
+    background: @ivori-white;
+    color: @ivori-black-primary;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.artwork-grid > div {
+    margin: 0;
+}
+
+.artwork-empty {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 55px;
+    font-weight: 700;
+    line-height: 67px;
+    color: @ivori-black-primary;
+}
+
+
+.action-field {
+    align-items: flex-start;
+    .field-title {
+        font-size: 32px;
+        line-height: 39px;
+        color: @ivori-black-primary;
+    }
+    .field-info {
+        font-size: 16px;
+        line-height: 19px;
+        color: @ivori-black-secondary;
+    }
+    .input {
+        width: 400px;
+        background: unset;
+        border-radius: 0;
+        border-bottom: 2px solid @ivori-black-primary;
+        input{
+            border-radius: 0;
+            background: unset;
+        }
+        .ant-input-prefix {
+            margin-right: 16px;
+        }
+        input::placeholder {
+            font-size: 16px;
+            font-weight: 400;
+            color: @ivori-black-tetiary;
+        }
+        .ant-input-prefix, .ant-input-suffix, input {
+            font-size: 24px;
+            line-height: 29px;
+            font-weight: 700;
+            color: @ivori-black;
+        }
+        
+    }
+}
+
+.ant-input-affix-wrapper:focus, .ant-input-affix-wrapper-focused {
+    box-shadow: none;
+    border-right-width: 0 !important;
+}
+
+.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
+    border-color: @ivori-black-primary;
+    border-right-width: 0 !important;
+    z-index: 1;
+}
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}

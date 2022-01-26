@@ -30,11 +30,7 @@ export const SalesListView = () => {
   return (
     <>
       <Banner
-        src="/main-banner.svg"
-        headingText="The amazing world of Metaplex."
-        subHeadingText="Buy exclusive Metaplex NFTs."
-        actionComponent={<HowToBuyModal buttonClassName="secondary-btn" />}
-        useBannerBg
+        actionComponent={<HowToBuyModal buttonClassName="secondary-btn ivri-btn--contained-dark" />}
       />
       <Layout>
         <Content className="ant-layout-inner-content" style={{ display: 'flex', flexWrap: 'wrap' }}>
@@ -45,11 +41,7 @@ export const SalesListView = () => {
                 onTabClick={key => setActiveKey(key as LiveAuctionViewState)}
               >
                 <TabPane
-                  tab={
-                    <>
-                      <span className="live"></span> Live
-                    </>
-                  }
+                  tab="Live"
                   key={LiveAuctionViewState.All}
                 ></TabPane>
                 {hasResaleAuctions && (
