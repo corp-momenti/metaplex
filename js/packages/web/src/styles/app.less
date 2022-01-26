@@ -215,24 +215,52 @@ h1 {
 .ant-btn:hover {
   background-color: transparent !important;
 }
-.ant-steps-item-process
-  > .ant-steps-item-container
-  > .ant-steps-item-content
-  > .ant-steps-item-title {
-  color: hsla(0, 0%, 100%, 0.85);
+.ant-steps-item {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 29px;
 }
+.ant-steps-item-process, .ant-steps-item-finish {
+    > .ant-steps-item-container
+    > .ant-steps-item-content
+    > .ant-steps-item-title {
+    color: @ivori-black;
+  }
+}
+
 .ant-steps-item-wait
   > .ant-steps-item-container
   > .ant-steps-item-content
   > .ant-steps-item-title {
-  color: hsla(0, 0%, 100%, 0.45);
+  color: @ivori-black-tetiary
 }
 .ant-steps-item-wait
   .ant-steps-item-icon
   > .ant-steps-icon
   .ant-steps-icon-dot {
-  background: hsla(0, 0%, 100%, 0.3);
+  background: @ivori-black-tetiary;
 }
+.ant-steps-vertical
+  > .ant-steps-item
+  > .ant-steps-item-container
+  > .ant-steps-item-tail::after {
+  width: 3px;
+  background: @ivori-black-tetiary
+}
+.ant-steps-vertical
+  > .ant-steps-item.ant-steps-item-finish
+  > .ant-steps-item-container
+  > .ant-steps-item-tail::after {
+  background: @ivori-black-primary
+}
+.ant-steps-item-process, .ant-steps-item-finish {
+  .ant-steps-item-container
+  .ant-steps-item-icon
+  .ant-steps-icon-dot {
+    background: @ivori-black-primary
+  }
+}
+
 .ant-card {
   background: #141414;
 }
