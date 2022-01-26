@@ -42,7 +42,7 @@ export const ArtSelector = (props: ArtSelectorProps) => {
 
   return (
     <>
-      <div className="artwork-grid">
+      <div>
         {selected.map(m => {
           const key = m?.metadata.pubkey || '';
           return (

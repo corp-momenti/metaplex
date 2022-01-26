@@ -698,11 +698,6 @@ export const AuctionCreateView = () => {
         )}
         <Col span={24} {...(stepsVisible ? { md: 20 } : { md: 24 })}>
           {stepsByCategory[attributes.category][step][1]}
-          {0 < step && stepsVisible && (
-            <div style={{ margin: 'auto', width: 'fit-content' }}>
-              <Button onClick={() => gotoNextStep(step - 1)}>Back</Button>
-            </div>
-          )}
         </Col>
       </Row>
     </>
@@ -889,7 +884,7 @@ const InstantSaleStep = ({
               autoFocus
               className="input"
               placeholder="Price"
-              prefix="◎"
+              prefix="@"
               suffix={mintInfo?.symbol || "CUSTOM"}
               onChange={info =>
                 setAttributes({
@@ -904,12 +899,10 @@ const InstantSaleStep = ({
       </Row>
       <Row>
         <Button
-          type="primary"
-          size="large"
           onClick={() => {
             confirm();
           }}
-          className="action-btn"
+          className="ivri-btn--contained"
         >
           Continue
         </Button>

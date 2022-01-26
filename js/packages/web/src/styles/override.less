@@ -104,16 +104,17 @@ body, .ant-modal {
 
 
 .ivri-btn--contained {
-    background-color: @ivori-black-primary;
+    background-color: @ivori-black-primary !important;
     border-radius: 0;
-    padding: 7px 12px;
+    color: @ivori-white !important;
+    padding: 16px 24px;
 }
 
 .ivri-btn--contained-dark {
     background-color: @white-primary !important;
     border-radius: 0;
     color: @ivori-black-primary !important;
-    padding: 7px 12px;
+    padding: 16px 24px;
 }
 
 .ant-btn {
@@ -303,6 +304,7 @@ p {
     font-size: 1.5rem !important;
     font-weight: 700 !important;
     line-height: 1.5rem !important;
+}
 
 .type-btn-description {
     color: @ivori-black-tetiary;
@@ -335,6 +337,10 @@ p {
     cursor: pointer;
 }
 
+.artwork-grid > div {
+    margin: 0;
+}
+
 .artwork-empty {
     width: 100%;
     display: flex;
@@ -344,4 +350,60 @@ p {
     font-weight: 700;
     line-height: 67px;
     color: @ivori-black-primary;
+}
+
+
+.action-field {
+    align-items: flex-start;
+    .field-title {
+        font-size: 32px;
+        line-height: 39px;
+        color: @ivori-black-primary;
+    }
+    .field-info {
+        font-size: 16px;
+        line-height: 19px;
+        color: @ivori-black-secondary;
+    }
+    .input {
+        width: 400px;
+        background: unset;
+        border-radius: 0;
+        border-bottom: 2px solid @ivori-black-primary;
+        input{
+            border-radius: 0;
+            background: unset;
+        }
+        .ant-input-prefix {
+            margin-right: 16px;
+        }
+        input::placeholder {
+            font-size: 16px;
+            font-weight: 400;
+            color: @ivori-black-tetiary;
+        }
+        .ant-input-prefix, .ant-input-suffix, input {
+            font-size: 24px;
+            line-height: 29px;
+            font-weight: 700;
+            color: @ivori-black;
+        }
+        
+    }
+}
+
+.ant-input-affix-wrapper:focus, .ant-input-affix-wrapper-focused {
+    box-shadow: none;
+    border-right-width: 0 !important;
+}
+
+.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
+    border-color: @ivori-black-primary;
+    border-right-width: 0 !important;
+    z-index: 1;
+}
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
 }
