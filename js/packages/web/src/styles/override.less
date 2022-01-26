@@ -112,54 +112,6 @@
     padding: 7px 12px;
 }
 
-
-// .connector {
-//     color: #121212;
-//     border-color: #121212;
-//     background: white !important;
-//     box-shadow: 0 0 24px rgba(26, 26, 26, 0.12);
-//     border-radius: 8px;
-//     padding: 12px 20px;
-//     font-family: "SF Pro Text";
-//     font-style: normal;
-//     font-weight: 600;
-//     height: fit-content;
-  
-//     &:hover, &:focus {
-//       background: transparent;
-//       border-color: #FFFFFF;
-//       color: #FFFFFF;
-//     }
-//   }
-
-/*
-.ant-btn {
-    line-height: 1.5715;
-    position: relative;
-    display: inline-block;
-    font-weight: 400;
-    white-space: nowrap;
-    text-align: center;
-    background-image: none;
-    border: 1px solid transparent;
-    -webkit-box-shadow: 0 2px 0 rgb(0 0 0 / 2%);
-    box-shadow: 0 2px 0 rgb(0 0 0 / 2%);
-    cursor: pointer;
-    -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-    touch-action: manipulation;
-    height: 32px;
-    padding: 4px 15px;
-    font-size: 14px;
-    border-radius: 2px;
-    color: rgba(255, 255, 255);
-    border-color: #d9d9d9;
-    background: #fff;
-}
-*/
 .ant-btn {
     font-weight: 700;
     border: 0 none;
@@ -273,4 +225,78 @@ p {
 
 .ant-tabs-nav-list {
     padding: 0 3rem;
+}
+
+.artwork-grid {
+    padding: 0 3rem 4rem 3rem;
+    column-gap: 1.5rem;
+    row-gap: 2rem;
+    align-items: flex-start;
+
+    & > a,
+    & > div {
+        margin: 0px;
+        flex: 0 0 25%;
+    }
+}
+
+.ant-image-img, .ant-image, .auction-image {
+    border-radius: 0;
+}
+
+.auction-meta {
+    padding: 1rem 1.25rem;
+}
+
+.ant-card {
+    font-size: 16px;
+}
+
+.artist-name {
+    font-size: 1rem !important;
+    line-height: 1.5rem !important;
+    font-weight: 700;
+    color: @ivori-black-secondary;
+}
+
+// divder
+.card-bid-info::before {
+    content: '';
+    border-top: 1px solid @ivori-black-primary;
+    display: block;
+    margin: 1rem 0;
+}
+
+.card-bid-info > .info-message {
+    color: @ivori-black-primary;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: .5rem;
+}
+
+.card-bid-info > .create-statistic {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: @ivori-black-primary !important;
+}
+
+.auction-info-container {
+    margin-top: 1.5rem;
+    padding: 0 1rem;
+    display: flex;
+    width: 100%;
+    background-color: @ivori-black-primary;
+    height: 2rem;
+    line-height: 2rem;
+    color: @white-primary;
+    text-transform: unset;
+    align-items: center;
+    column-gap: .5rem;
+}
+
+.ant-statistic-content {
+    color: @ivori-black-primary !important;
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    line-height: 1.5rem !important;
 }

@@ -27,15 +27,6 @@ export const AuctionRenderCard = (props: AuctionCard) => {
     <Card hoverable={true} className={`auction-render-card`} bordered={false}>
       <div className={'card-art-info'}>
         <div className="auction-gray-wrapper">
-          <div className={'card-artist-info'}>
-            <MetaAvatar creators={creators.length ? [creators[0]] : undefined} />
-            <span className={'artist-name'}>
-              {creators[0]?.name ||
-                creators[0]?.address?.substr(0, 6) ||
-                'Go to auction'}
-              ...
-            </span>
-          </div>
           <div className={'art-content-wrapper'}>
             <ArtContent
               className="auction-image no-events"
@@ -44,15 +35,21 @@ export const AuctionRenderCard = (props: AuctionCard) => {
               allowMeshRender={false}
             />
           </div>
-          <div className={'art-name'}>{name}</div>
-          <div className="auction-info-container">
-            <div className={'info-message'}>ENDING IN</div>
-            <AuctionCountdown auctionView={auctionView} labels={false} />
+          <div className="auction-meta">
+              <div className={'card-artist-info'}>
+                <MetaAvatar size={24} creators={creators.length ? [creators[0]] : undefined} />
+                <span className={'artist-name'}>
+                  {creators[0]?.name ||
+                    creators[0]?.address?.substr(0, 6) ||
+                    'Go to auction'}
+                </span>
+              </div>
+            <div className={'art-name'}>{name}</div>
           </div>
         </div>
       </div>
       <div className="card-bid-info">
-        <span className={'text-uppercase info-message'}>{status}</span>
+        <span className={'info-message'}>{status}</span>
         <AmountLabel
           containerStyle={{ flexDirection: 'row' }}
           title={status}
@@ -60,6 +57,10 @@ export const AuctionRenderCard = (props: AuctionCard) => {
           iconSize={24}
           tokenInfo={tokenInfo}
         />
+      </div>
+      <div className="auction-info-container">
+        <span className={'info-message'}>Ending in</span>
+        <AuctionCountdown auctionView={auctionView} labels={false} />
       </div>
     </Card>
   );
