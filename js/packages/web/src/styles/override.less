@@ -5,6 +5,10 @@
 @white-primary: #FFF;
 @easeOut: cubic-bezier(0.83, 0, 0.17, 1);
 
+body, .ant-modal {
+    color: @ivori-black-primary;
+}
+
 .app-bar-logo {
     width: 58.4px;
     height: auto;
@@ -320,4 +324,24 @@ p {
 
 .ivri-btn-wrapper:last-child {
     margin-bottom: 0;
+}
+
+.art-card {
+    border-radius: 0;
+    background: @ivori-white;
+    color: @ivori-black-primary;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.artwork-empty {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 55px;
+    font-weight: 700;
+    line-height: 67px;
+    color: @ivori-black-primary;
 }

@@ -801,7 +801,7 @@ const InstantSaleStep = ({
   return (
     <>
       <Row className="call-to-action" style={{ marginBottom: 0 }}>
-        <h2>Select which item to sell:</h2>
+        <h2>Select which item to sell</h2>
       </Row>
 
       <Row className="content-action">
