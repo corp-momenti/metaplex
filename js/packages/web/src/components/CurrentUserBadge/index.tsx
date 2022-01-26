@@ -86,6 +86,7 @@ const UserActions = (props: { mobile?: boolean; onClick?: any }) => {
           <div
             style={{
               display: 'flex',
+              flexDirection: 'column'
             }}
           >
             {canCreate && (
@@ -100,7 +101,6 @@ const UserActions = (props: { mobile?: boolean; onClick?: any }) => {
                     Create Giv
                   </Button>
                 </Link>
-                &nbsp;&nbsp;
               </>
             )}
             <Link to={`/auction/create/0`} style={{ width: '100%' }}>
