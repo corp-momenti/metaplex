@@ -10,7 +10,6 @@ import {
   AuctionView,
   AuctionViewState,
   useBidsForAuction,
-  useHighestBidForAuction,
 } from '../../../hooks';
 import { BN } from 'bn.js';
 
@@ -23,7 +22,6 @@ export const useAuctionStatus = (
   auctionView: AuctionView,
 ): AuctionStatusLabels => {
   const bids = useBidsForAuction(auctionView.auction.pubkey);
-  const winningBid = useHighestBidForAuction(auctionView.auction.pubkey);
   const mintInfo = useMint(auctionView.auction.info.tokenMint);
 
   const participationFixedPrice =
@@ -66,7 +64,7 @@ export const useAuctionStatus = (
 
     amount = formatTokenAmount(
       auctionView.auctionDataExtended?.info.instantSalePrice?.toNumber(),
-      mintInfo
+      mintInfo,
     );
 
     return {
@@ -76,6 +74,8 @@ export const useAuctionStatus = (
   }
 
   if (bids.length > 0 && !isOpen) {
+    // Note(dennis): Custom fix while useHighestBidForAuction doesn't give correct answer
+    const winningBid = bids[0];
     amount = formatTokenAmount(winningBid.info.lastBid);
     status = 'Current Bid';
   }
