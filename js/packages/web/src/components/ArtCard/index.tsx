@@ -65,61 +65,40 @@ export const ArtCard = (props: ArtCardProps) => {
 
   const card = (
     <Card
-      hoverable={true}
+      // hoverable={true}
       className={`art-card ${small ? 'small' : ''} ${className ?? ''}`}
+      bordered={false}
       {...rest}
     >
-      {onClose && (
-        <Button
-          className="card-close-button"
-          shape="circle"
-          onClick={e => {
-            e.stopPropagation();
-            e.preventDefault();
-            onClose && onClose();
-          }}
-        >
-          X
-        </Button>
-      )}
-      <div className="art-card__header">
-        <MetaAvatar creators={creators} size={32} />
-        <div className="edition-badge">{badge}</div>
+      <div className={'card-art-info'}>
+        <div className="auction-gray-wrapper">
+          <div className="edition-badge">{badge}</div>
+          <div className={'art-content-wrapper'}>
+            <ArtContent
+              pubkey={pubkey}
+              uri={image}
+              animationURL={animationURL}
+              category={category}
+              preview={preview}
+              height={height}
+              width={width}
+              artView={artView}
+              className="auction-image no-events"
+            />
+          </div>
+          <div className="auction-meta">
+            <div className={'card-artist-info'}>
+              <MetaAvatar creators={creators} size={24} />
+              <span className={'artist-name'}>
+                  {creators[0]?.name ||
+                    creators[0]?.address?.substr(0, 6) ||
+                    'Go to auction'}
+              </span>
+            </div>
+            <div className={'art-name'}>{name}</div>
+          </div>
+        </div>
       </div>
-      <div className="art-content__wrapper">
-        <ArtContent
-          pubkey={pubkey}
-          uri={image}
-          animationURL={animationURL}
-          category={category}
-          preview={preview}
-          height={height}
-          width={width}
-          artView={artView}
-        />
-      </div>
-      <Meta
-        title={`${name}`}
-        description={
-          <>
-            {/* {art.type === ArtType.Master && (
-              <>
-                <br />
-                {!endAuctionAt && (
-                  <span style={{ padding: '24px' }}>
-                    {(art.maxSupply || 0) - (art.supply || 0)}/
-                    {art.maxSupply || 0} prints remaining
-                  </span>
-                )}
-              </>
-            )} */}
-
-            {count && (
-              <div className="edition-badge">Selected count: {count}</div>
-            )}
-          </>
-        }
-      />
     </Card>
   );
 

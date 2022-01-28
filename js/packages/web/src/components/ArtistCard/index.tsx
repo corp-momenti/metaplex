@@ -9,7 +9,7 @@ import { MetaAvatar } from '../MetaAvatar';
 export const ArtistCard = ({ artist }: { artist: Artist }) => {
   return (
     <Card
-      hoverable={true}
+      // hoverable={true}
       className={`artist-card`}
       cover={
         <div className="header-container">
@@ -19,7 +19,7 @@ export const ArtistCard = ({ artist }: { artist: Artist }) => {
       bordered={false}
     >
       <>
-        <MetaAvatar creators={[artist]} size={64} />
+        <MetaAvatar creators={[artist]} size={48} />
         <div className="artist-card-name">
           {artist.name || shortenAddress(artist.address || '')}
         </div>

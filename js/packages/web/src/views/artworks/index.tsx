@@ -88,6 +88,7 @@ export const ArtworksView = () => {
               activeKey={activeKey}
               onTabClick={key => setActiveKey(key as ArtworkViewState)}
               tabBarExtraContent={refreshButton}
+              
             >
               <TabPane
                 tab={<span className="tab-title" id="items-tab-all">&nbsp;</span>}

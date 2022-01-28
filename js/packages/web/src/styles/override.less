@@ -468,3 +468,63 @@ input::-webkit-outer-spin-button {
 [ant-click-animating-without-extra-node="true"]::after {
     display: none !important;
 }
+
+// Artist Card
+.artist-card {
+    filter: none !important;
+    // min-width: 20-px !important;
+    width: 100%;
+    min-width: 270px;
+    border-radius: 0;
+    border: 2px solid #0d0d0c;
+    overflow: hidden;
+    color: #0D0D0C;
+    background-color: @white-primary !important;
+}
+
+// unset
+.artist-card .ant-card-body {
+    border-top-left-radius: unset !important;
+    border-top-right-radius: unset !important;
+    // min-height: 100px;
+    display: flex;
+    align-items: center;
+    background-color: @white-primary !important;
+    padding: 1rem;
+    margin-top: unset !important;
+}
+
+.card-art-info {
+    width: 100%;
+    height: 100%;
+
+    .card-artist-info {
+        display: flex;
+        margin-bottom: 1rem;
+
+        .ant-avatar-image {
+            margin-right: 0.5rem;
+        }
+    }
+
+    .art-name {
+        white-space: nowrap;
+        font-size: 1.5rem;
+        line-height: 1;
+        font-weight: 700;
+    }
+}
+
+.edition-badge {
+    position: absolute;
+    z-index: 2;
+    top: 1rem;
+    right: 1.25rem;
+    padding: 0 .625rem;
+    font-size: .75rem;
+    color: @white-primary;
+    background: @ivori-black-primary;
+    line-height: 1.5rem;
+    height: 1.5rem;
+    border-radius: 2px
+}
