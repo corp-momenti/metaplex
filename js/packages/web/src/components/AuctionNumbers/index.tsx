@@ -41,7 +41,6 @@ export const AuctionNumbers = (props: {
   const state = useAuctionCountdown(auctionView);
   const bids = useBidsForAuction(auctionView.auction.pubkey);
   const mintInfo = useMint(auctionView.auction.info.tokenMint);
-
   const participationFixedPrice =
     auctionView.auctionManager.participationConfig?.fixedPrice || 0;
   const participationOnly =
@@ -101,6 +100,7 @@ const isEnded = (state?: CountdownState) =>
 
 const Countdown = ({ state }: { state?: CountdownState }) => {
   let localState = state;
+  // <span className={'info-message'}>Ending in</span>
   if (!localState) {
     localState = {
       days: 0,
@@ -146,19 +146,12 @@ const Countdown = ({ state }: { state?: CountdownState }) => {
 };
 
 const LabeledCountdown = ({ state }: { state?: CountdownState }) => {
+  console.log( state )
+  console.log( isEnded( state ) )
   return (
     <>
       <div style={{ width: '100%' }}>
         <>
-          <div
-            className="info-header"
-            style={{
-              // margin: '12px 0',
-              // fontSize: 16,
-            }}
-          >
-            Time left
-          </div>
           {state &&
             (isEnded(state) ? (
               <Row style={{ width: '100%' }}>
