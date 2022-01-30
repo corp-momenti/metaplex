@@ -1900,52 +1900,53 @@ const ReviewStep = (props: {
             }
           />
           {cost ? (
-            <AmountLabel title="Cost to Create" amount={cost} tokenInfo={useTokenList().tokenMap.get(WRAPPED_SOL_MINT.toString())}/>
+            <div>
+              <div className="ant-statistic-title">Cost to Create</div>
+              <AmountLabel
+                title=""
+                containerStyle={{alignItems: 'center'}}
+                amount={100}
+                tokenInfo={useTokenList().tokenMap.get(WRAPPED_SOL_MINT.toString())}/>
+            </div>
           ) : (
             <Spin />
           )}
-        </Col>
-      </Row>
-      <Row style={{ display: 'block' }}>
-        <Divider />
-        <Statistic
-          className="create-statistic"
-          title="Start date"
-          value={
-            props.attributes.startSaleTS
-              ? moment
-                  .unix(props.attributes.startSaleTS as number)
-                  .format('dddd, MMMM Do YYYY, h:mm a')
-              : 'Right after successfully published'
-          }
-        />
-        <br />
-        {props.attributes.startListTS && (
           <Statistic
             className="create-statistic"
-            title="Listing go live date"
-            value={moment
-              .unix(props.attributes.startListTS as number)
-              .format('dddd, MMMM Do YYYY, h:mm a')}
+            title="Start date"
+            value={
+              props.attributes.startSaleTS
+                ? moment
+                    .unix(props.attributes.startSaleTS as number)
+                    .format('dddd, MMMM Do YYYY, h:mm a')
+                : 'Right after successfully published'
+            }
           />
-        )}
-        <Divider />
-        <Statistic
-          className="create-statistic"
-          title="Sale ends"
-          value={
-            props.attributes.endTS
-              ? moment
-                  .unix(props.attributes.endTS as number)
-                  .format('dddd, MMMM Do YYYY, h:mm a')
-              : 'Until sold'
-          }
-        />
+          {props.attributes.startListTS && (
+            <Statistic
+              className="create-statistic"
+              title="Listing go live date"
+              value={moment
+                .unix(props.attributes.startListTS as number)
+                .format('dddd, MMMM Do YYYY, h:mm a')}
+            />
+          )}
+          <Statistic
+            className="create-statistic"
+            title="Sale ends"
+            value={
+              props.attributes.endTS
+                ? moment
+                    .unix(props.attributes.endTS as number)
+                    .format('dddd, MMMM Do YYYY, h:mm a')
+                : 'Until sold'
+            }
+          />
+        </Col>
       </Row>
       <Row>
         <Button
-          type="primary"
-          size="large"
+          className="ivri-btn--contained"
           onClick={() => {
             if (balance < MINIMUM_SAFE_FEE_AUCTION_CREATION) {
               setShowFundsIssueModal(true)
@@ -1953,7 +1954,6 @@ const ReviewStep = (props: {
               handleConfirm()
             }
           }}
-          className="action-btn"
         >
           {props.attributes.category === AuctionCategory.InstantSale
             ? 'List for Sale'
