@@ -674,7 +674,7 @@ export const AuctionCreateView = () => {
 
   return (
     <>
-      <Row className="creator-base-page" style={{ paddingTop: 50 }}>
+      <Row className="creator-base-page">
         {stepsVisible && (
           <Col span={24} md={4}>
             <Steps
@@ -795,7 +795,7 @@ const InstantSaleStep = ({
 
   return (
     <>
-      <Row className="call-to-action" style={{ marginBottom: 0 }}>
+      <Row className="call-to-action">
         <h2>Select which item to sell</h2>
       </Row>
 
@@ -950,7 +950,7 @@ const CopiesStep = (props: {
 
   return (
     <>
-      <Row className="call-to-action" style={{ marginBottom: 0 }}>
+      <Row className="call-to-action">
         <h2>Select which item to sell</h2>
         <p style={{ fontSize: '1.2rem' }}>
           Select the item(s) that you want to list.
@@ -1007,12 +1007,10 @@ const CopiesStep = (props: {
       </Row>
       <Row>
         <Button
-          type="primary"
-          size="large"
           onClick={() => {
             props.confirm();
           }}
-          className="action-btn"
+          className="ivri-btn--contained"
         >
           Continue to Terms
         </Button>
@@ -1087,12 +1085,7 @@ const NumberOfWinnersStep = (props: {
         </Col>
       </Row>
       <Row>
-        <Button
-          type="primary"
-          size="large"
-          onClick={props.confirm}
-          className="action-btn"
-        >
+        <Button onClick={props.confirm} className="ivri-btn--contained">
           Continue
         </Button>
       </Row>
@@ -1198,12 +1191,7 @@ const PriceAuction = (props: {
         </Col>
       </Row>
       <Row>
-        <Button
-          type="primary"
-          size="large"
-          onClick={props.confirm}
-          className="action-btn"
-        >
+        <Button onClick={props.confirm} className="ivri-btn--contained">
           Continue
         </Button>
       </Row>
@@ -1359,12 +1347,7 @@ const InitialPhaseStep = (props: {
         </Col>
       </Row>
       <Row>
-        <Button
-          type="primary"
-          size="large"
-          onClick={props.confirm}
-          className="action-btn"
-        >
+        <Button onClick={props.confirm} className="ivri-btn--contained">
           Continue
         </Button>
       </Row>
@@ -1477,12 +1460,7 @@ const EndingPhaseAuction = (props: {
         </Col>
       </Row>
       <Row>
-        <Button
-          type="primary"
-          size="large"
-          onClick={props.confirm}
-          className="action-btn"
-        >
+        <Button onClick={props.confirm} className="ivri-btn--contained">
           Continue
         </Button>
       </Row>
