@@ -1373,33 +1373,33 @@ const EndingPhaseAuction = (props: {
             <span className="field-info">
               This is how long the auction will last for.
             </span>
-            <Input
-              addonAfter={
-                <Select
-                  defaultValue={props.attributes.auctionDurationType}
-                  onChange={value =>
-                    props.setAttributes({
-                      ...props.attributes,
-                      auctionDurationType: value,
-                    })
-                  }
-                >
-                  <Option value="minutes">Minutes</Option>
-                  <Option value="hours">Hours</Option>
-                  <Option value="days">Days</Option>
-                </Select>
-              }
-              autoFocus
-              type="number"
-              className="input"
-              placeholder="Set the auction duration"
-              onChange={info =>
-                props.setAttributes({
-                  ...props.attributes,
-                  auctionDuration: parseInt(info.target.value),
-                })
-              }
-            />
+            <div className="field-input">
+              <Input
+                autoFocus
+                type="number"
+                className="input"
+                placeholder="Set the auction duration"
+                onChange={info =>
+                  props.setAttributes({
+                    ...props.attributes,
+                    auctionDuration: parseInt(info.target.value),
+                  })
+                }
+              />
+              <Select
+                defaultValue={props.attributes.auctionDurationType}
+                onChange={value =>
+                  props.setAttributes({
+                    ...props.attributes,
+                    auctionDurationType: value,
+                  })
+                }
+              >
+                <Option value="minutes">Minutes</Option>
+                <Option value="hours">Hours</Option>
+                <Option value="days">Days</Option>
+              </Select>
+            </div>
           </div>
 
           <div className="action-field">
@@ -1409,32 +1409,32 @@ const EndingPhaseAuction = (props: {
               time left on the countdown. Any bids placed during the final phase
               will extend the end time by this same duration.
             </span>
-            <Input
-              addonAfter={
-                <Select
-                  defaultValue={props.attributes.gapTimeType}
-                  onChange={value =>
-                    props.setAttributes({
-                      ...props.attributes,
-                      gapTimeType: value,
-                    })
-                  }
-                >
-                  <Option value="minutes">Minutes</Option>
-                  <Option value="hours">Hours</Option>
-                  <Option value="days">Days</Option>
-                </Select>
-              }
-              type="number"
-              className="input"
-              placeholder="Set the gap time"
-              onChange={info =>
-                props.setAttributes({
-                  ...props.attributes,
-                  gapTime: parseInt(info.target.value),
-                })
-              }
-            />
+            <div className="field-input">
+              <Input
+                type="number"
+                className="input"
+                placeholder="Set the gap time"
+                onChange={info =>
+                  props.setAttributes({
+                    ...props.attributes,
+                    gapTime: parseInt(info.target.value),
+                  })
+                }
+              />
+              <Select
+                defaultValue={props.attributes.gapTimeType}
+                onChange={value =>
+                  props.setAttributes({
+                    ...props.attributes,
+                    gapTimeType: value,
+                  })
+                }
+              >
+                <Option value="minutes">Minutes</Option>
+                <Option value="hours">Hours</Option>
+                <Option value="days">Days</Option>
+              </Select>
+            </div>
           </div>
 
           <label className="action-field">

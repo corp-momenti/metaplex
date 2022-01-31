@@ -389,9 +389,32 @@ p {
         color: @ivori-black-primary;
     }
     .field-info {
+        max-width: 698px;
         font-size: 1rem;
         line-height: 19px;
         color: @ivori-black-secondary;
+    }
+    .field-input {
+        display: flex;
+        align-items: center;
+        input[type="number"] {
+            padding: 0 0 1rem;
+        }
+        .ant-input:focus, .ant-input:hover {
+            border-bottom: 2px solid @ivori-black-primary !important;
+            box-shadow: none !important;
+        }
+        .ant-select-selector {
+            border: none;
+            .ant-select-selection-item {
+                font-size: 1rem;
+                font-weight: 700;
+                line-height: 21px;
+            }
+        }
+        .ant-select-single.ant-select-open .ant-select-selection-item {
+            color: @ivori-black-primary;
+        }
     }
     .input {
         width: 400px;
@@ -405,17 +428,22 @@ p {
         .ant-input-prefix {
             margin-right: 1rem;
         }
-        input::placeholder {
-            font-size: 1rem;
-            font-weight: 400;
-            color: @ivori-black-tetiary;
-        }
         .ant-input-prefix, .ant-input-suffix, input {
             font-size: 1.5rem;
             line-height: 29px;
             font-weight: 700;
             color: @ivori-black;
         }
+    }
+    .ant-input {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: @ivori-black-primary;
+    }
+    .ant-input::placeholder {
+        font-size: 1rem;
+        font-weight: 400;
+        color: @ivori-black-tetiary;
     }
     .radio-field {
         font-size: 1.5rem;
@@ -475,6 +503,14 @@ p {
         height: 24px !important;
         color: @ivori-black;
     }
+    .ant-select-arrow .anticon > svg {
+        width: 14px !important;
+        height: 14px !important;
+    }
+}
+
+.ant-input-affix-wrapper {
+    padding: 0 0 1rem;
 }
 
 .ant-input-affix-wrapper:focus, .ant-input-affix-wrapper-focused {
@@ -486,6 +522,11 @@ p {
     border-color: @ivori-black-primary;
     border-right-width: 0 !important;
     z-index: 1;
+}
+
+.ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    border: none;
+    box-shadow: none;
 }
 
 input::-webkit-inner-spin-button,
@@ -537,8 +578,8 @@ input::-webkit-outer-spin-button {
 }
 
 ::selection {
-    color: @ivori-black-primary;
-    background: 0 none;
+    color: @white-primary;
+    background: @ivori-black-primary;
 }
 
 .ant-btn:focus {
