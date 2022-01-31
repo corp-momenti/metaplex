@@ -56,7 +56,7 @@ export const ArtCard = (props: ArtCardProps) => {
 
   let badge = '';
   if (art.type === ArtType.NFT) {
-    badge = 'Unique';
+    badge = 'UNIQUE';
   } else if (art.type === ArtType.Master) {
     badge = 'NFT 0';
   } else if (art.type === ArtType.Print) {

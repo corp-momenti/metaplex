@@ -26,6 +26,7 @@ export const ArtworksView = () => {
   const { userAccounts } = useUserAccounts();
 
   const [activeKey, setActiveKey] = useState(ArtworkViewState.Metaplex);
+  console.log( activeKey )
 
   const userItems = useItems({ activeKey });
 
@@ -35,13 +36,14 @@ export const ArtworksView = () => {
     }
   }, [isFetching]);
 
-  useEffect(() => {
-    if (connected) {
-      setActiveKey(ArtworkViewState.Owned);
-    } else {
-      setActiveKey(ArtworkViewState.Metaplex);
-    }
-  }, [connected, setActiveKey]);
+  // these lines always show owned list.
+  // useEffect(() => {
+  //   if (connected) {
+  //     setActiveKey(ArtworkViewState.Owned);
+  //   } else {
+  //     setActiveKey(ArtworkViewState.Metaplex);
+  //   }
+  // }, [connected, setActiveKey]);
 
   const isDataLoading = isLoading || isFetching;
 
@@ -81,14 +83,13 @@ export const ArtworksView = () => {
 
   return (
     <Layout style={{ margin: 0, marginTop: 30 }} id="items-tab">
-      <Content style={{ display: 'flex', flexWrap: 'wrap' }}>
+      <Content style={{ display: 'flex', flexWrap: 'wrap' }} id="items-tabs">
         <Col style={{ width: '100%', marginTop: 10 }}>
           <Row>
             <Tabs
               activeKey={activeKey}
-              onTabClick={key => setActiveKey(key as ArtworkViewState)}
+              onChange={key => setActiveKey(key as ArtworkViewState)}
               tabBarExtraContent={refreshButton}
-              
             >
               <TabPane
                 tab={<span className="tab-title" id="items-tab-all">&nbsp;</span>}

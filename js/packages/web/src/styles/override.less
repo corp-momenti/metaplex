@@ -95,6 +95,11 @@ body, .ant-modal {
         color: @white-primary;
         transition: color .2s @easeOut;
 
+        span {
+            color: @white-primary;
+            transition: color .2s @easeOut;
+        }
+
         &::after {
             transform: scale( 1 );
             transition: transform .2s @easeOut;
@@ -196,7 +201,12 @@ p {
     height: auto;
 }
 
-// this line is suck.
+#items-tabs {
+    .ant-tabs-nav-list {
+        column-gap: 2rem;
+    }
+}
+
 .ant-tabs-tab .ant-tabs-tab-btn {
     display: block !important;
 }
@@ -527,4 +537,12 @@ input::-webkit-outer-spin-button {
     line-height: 1.5rem;
     height: 1.5rem;
     border-radius: 2px
+}
+
+.art-title {
+    color: @ivori-black-primary !important;
+}
+
+.ant-steps-dot {
+    overflow-x: visible !important;
 }
