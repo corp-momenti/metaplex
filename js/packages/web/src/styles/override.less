@@ -113,6 +113,19 @@ body, .ant-modal {
     border-radius: 0;
     color: @ivori-white !important;
     padding: 16px 24px;
+    transition-property: background-color, color, border-color !important;
+    transition-duration: .2s !important;
+    transition-timing-function: @easeOut !important;
+
+    &:hover {
+        background-color: @white-primary !important;
+        border: 2px solid @ivori-black-primary;
+        color: @ivori-black-primary;
+
+        transition-property: background-color, color, border !important;
+        transition-duration: .2s !important;
+        transition-timing-function: @easeOut !important;
+    }
 }
 
 .ivri-btn--contained-dark {
