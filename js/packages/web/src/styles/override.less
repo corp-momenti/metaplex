@@ -95,6 +95,11 @@ body, .ant-modal {
         color: @white-primary;
         transition: color .2s @easeOut;
 
+        span {
+            color: @white-primary;
+            transition: color .2s @easeOut;
+        }
+
         &::after {
             transform: scale( 1 );
             transition: transform .2s @easeOut;
@@ -108,6 +113,19 @@ body, .ant-modal {
     border-radius: 0;
     color: @ivori-white !important;
     padding: 16px 24px;
+    transition-property: background-color, color, border-color !important;
+    transition-duration: .2s !important;
+    transition-timing-function: @easeOut !important;
+
+    &:hover {
+        background-color: @white-primary !important;
+        border: 2px solid @ivori-black-primary;
+        color: @ivori-black-primary;
+
+        transition-property: background-color, color, border !important;
+        transition-duration: .2s !important;
+        transition-timing-function: @easeOut !important;
+    }
 }
 
 .ivri-btn--contained-dark {
@@ -196,7 +214,12 @@ p {
     height: auto;
 }
 
-// this line is suck.
+#items-tabs {
+    .ant-tabs-nav-list {
+        column-gap: 2rem;
+    }
+}
+
 .ant-tabs-tab .ant-tabs-tab-btn {
     display: block !important;
 }
@@ -291,16 +314,7 @@ p {
 
 .auction-info-container {
     margin-top: 1.5rem;
-    padding: 0 1rem;
-    display: flex;
     width: 100%;
-    background-color: @ivori-black-primary;
-    height: 2rem;
-    line-height: 2rem;
-    color: @white-primary;
-    text-transform: unset;
-    align-items: center;
-    column-gap: .25rem;
 }
 
 .ant-statistic-content {
@@ -527,4 +541,12 @@ input::-webkit-outer-spin-button {
     line-height: 1.5rem;
     height: 1.5rem;
     border-radius: 2px
+}
+
+.art-title {
+    color: @ivori-black-primary !important;
+}
+
+.ant-steps-dot {
+    overflow-x: visible !important;
 }

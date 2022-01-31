@@ -22,7 +22,7 @@ export const AuctionRenderCard = (props: AuctionCard) => {
 
   const tokenInfo = useTokenList().mainnetTokens.filter(m=>m.address == auctionView.auction.info.tokenMint)[0]
   const { status, amount } = useAuctionStatus(auctionView);
-
+  // console.log( auctionV )
   const card = (
     <Card hoverable={true} className={`auction-render-card`} bordered={false}>
       <div className={'card-art-info'}>
@@ -59,8 +59,7 @@ export const AuctionRenderCard = (props: AuctionCard) => {
         />
       </div>
       <div className="auction-info-container">
-        <span className={'info-message'}>Ending in</span>
-        <AuctionCountdown auctionView={auctionView} labels={false} />
+        <AuctionCountdown auctionView={auctionView} labels={false} isAuctionRender={ true } />
       </div>
     </Card>
   );

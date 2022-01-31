@@ -1,12 +1,32 @@
 .no-label-cd {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  border-top: 1px solid @ivori-black-primary;
+  color: @ivori-black-primary;
+  padding: 0 1rem;
+  height: 2rem;
+  line-height: 2rem;
+  text-transform: unset;
+
+  &.is-count-down {
+    background-color: @ivori-black-primary;
+    color: @white-primary !important;
+    .cd-number, span, .info-message {
+      color: @white-primary !important;
+    }
+  }
+
   .cd-number {
     font-size: .875rem;
     font-weight: 700;
     margin-right: .25rem;
+    color: @ivori-black-primary;
   }
   span{
     font-size: .875rem;
     font-weight: 400;
     margin-left: 1px;
+    color: @ivori-black-primary;
   }
 }

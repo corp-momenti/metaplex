@@ -16,19 +16,27 @@ import { useTokenList } from '../../contexts/tokenList';
 export const AuctionCountdown = (props: {
   auctionView: AuctionView;
   labels: boolean;
+  isAuctionRender?: boolean; // for AuctionRenderCard only
 }) => {
   const { auctionView } = props;
   const state = useAuctionCountdown(auctionView);
   const ended = isEnded(state);
 
-  if (!props.labels) {
-    return <Countdown state={state} />;
+  if ( props.isAuctionRender && !ended ) 
+
+  if ( !ended ) {
+    if ( props.isAuctionRender ) return <CountdownOnAuctionCard state={ state } />;
+    if ( props.labels ) {
+      return (
+        <Col span={ended ? 24 : 10}>
+          <LabeledCountdown state={state} />
+        </Col>
+      );
+    } else {
+      return <Countdown state={state} />;
+    }
   }
-  return (
-    <Col span={ended ? 24 : 10}>
-      <LabeledCountdown state={state} />
-    </Col>
-  );
+  return <Row style={{ display: 'none' }} />;
 };
 
 export const AuctionNumbers = (props: {
@@ -98,9 +106,51 @@ const isEnded = (state?: CountdownState) =>
   state?.minutes === 0 &&
   state?.seconds === 0;
 
+// CountdownOnAuctionCard
+const CountdownOnAuctionCard = ({ state }: { state?: CountdownState }) => {
+  let localState = state ? state : { days: 0, hours: 0, minutes: 0, seconds: 0 };
+
+  const isCountDown = (): boolean => ( localState.days < 1 );
+  
+  return (
+    <Row
+      className={`no-label-cd ${ isCountDown() ? 'is-count-down' : '' }`}
+    >
+        <Col><span className={'info-message'}>Ending in&nbsp;</span></Col>
+      {localState.days > 0 && (
+        <Col>
+          <div className="cd-number">
+            {localState.days}
+            <span>days</span>
+          </div>
+        </Col>
+      )}
+      <Col>
+        <div className="cd-number">
+          {localState.hours}
+          <span>hours</span>
+        </div>
+      </Col>
+      <Col>
+        <div className="cd-number">
+          {localState.minutes}
+          <span>min</span>
+        </div>
+      </Col>
+      {!localState.days && (
+        <Col>
+          <div className="cd-number">
+            {localState.seconds}
+            <span>sec</span>
+          </div>
+        </Col>
+      )}
+    </Row>
+  );
+};
+
 const Countdown = ({ state }: { state?: CountdownState }) => {
   let localState = state;
-  // <span className={'info-message'}>Ending in</span>
   if (!localState) {
     localState = {
       days: 0,
@@ -146,8 +196,6 @@ const Countdown = ({ state }: { state?: CountdownState }) => {
 };
 
 const LabeledCountdown = ({ state }: { state?: CountdownState }) => {
-  console.log( state )
-  console.log( isEnded( state ) )
   return (
     <>
       <div style={{ width: '100%' }}>
