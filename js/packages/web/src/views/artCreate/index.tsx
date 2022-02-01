@@ -140,7 +140,7 @@ export const ArtCreateView = () => {
 
   return (
     <>
-      <Row className={'creator-base-page'} style={{ paddingTop: 50 }}>
+      <Row className="creator-base-page">
         {stepsVisible && (
           <Col span={24} md={4}>
             <Steps

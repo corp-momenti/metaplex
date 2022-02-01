@@ -5,6 +5,10 @@
 @white-primary: #FFF;
 @easeOut: cubic-bezier(0.83, 0, 0.17, 1);
 
+html {
+    --antd-wave-shadow-color: @ivori-black-primary;
+}
+
 body, .ant-modal {
     color: @ivori-black-primary;
 }
@@ -346,7 +350,14 @@ p {
     margin-bottom: 0;
 }
 
+.art-selector {
+    margin-bottom: 3rem;
+}
+
 .art-card {
+    display: flex;
+    width: 360px;
+    height: 360px;
     border-radius: 0;
     background: @ivori-white;
     color: @ivori-black-primary;
@@ -370,18 +381,40 @@ p {
     color: @ivori-black-primary;
 }
 
-
 .action-field {
     align-items: flex-start;
     .field-title {
-        font-size: 32px;
+        font-size: 2rem;
         line-height: 39px;
         color: @ivori-black-primary;
     }
     .field-info {
-        font-size: 16px;
+        max-width: 698px;
+        font-size: 1rem;
         line-height: 19px;
         color: @ivori-black-secondary;
+    }
+    .field-input {
+        display: flex;
+        align-items: center;
+        input[type="number"] {
+            padding: 0 0 1rem;
+        }
+        .ant-input:focus, .ant-input:hover {
+            border-bottom: 2px solid @ivori-black-primary !important;
+            box-shadow: none !important;
+        }
+        .ant-select-selector {
+            border: none;
+            .ant-select-selection-item {
+                font-size: 1rem;
+                font-weight: 700;
+                line-height: 21px;
+            }
+        }
+        .ant-select-single.ant-select-open .ant-select-selection-item {
+            color: @ivori-black-primary;
+        }
     }
     .input {
         width: 400px;
@@ -393,20 +426,91 @@ p {
             background: unset;
         }
         .ant-input-prefix {
-            margin-right: 16px;
-        }
-        input::placeholder {
-            font-size: 16px;
-            font-weight: 400;
-            color: @ivori-black-tetiary;
+            margin-right: 1rem;
         }
         .ant-input-prefix, .ant-input-suffix, input {
-            font-size: 24px;
+            font-size: 1.5rem;
             line-height: 29px;
             font-weight: 700;
             color: @ivori-black;
         }
     }
+    .ant-input {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: @ivori-black-primary;
+    }
+    .ant-input::placeholder {
+        font-size: 1rem;
+        font-weight: 400;
+        color: @ivori-black-tetiary;
+    }
+    .radio-field {
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 29px;
+        color: @ivori-black;
+        margin-bottom: 1rem;
+    }
+    .ant-radio-inner {
+        width: 24px;
+        height: 24px;
+        border-width: 3px;
+        border-color: @ivori-black-primary;
+    }
+    .ant-radio-inner::after {
+        width: 14px;
+        height: 14px;
+        border-radius: 14px;
+        margin-top: -7px;
+        margin-left: -7px;
+        background: @ivori-black-primary;
+        transform: scale(1);
+    }
+    .ant-radio-input:focus + .ant-radio-inner {
+        border-color: @ivori-black-primary;
+    }
+    .radio-subtitle {
+        font-size: 1rem;
+        line-height: 19px;
+        color: @ivori-black-secondary;
+        margin-left: 32px;
+    }
+    .field-title {
+        margin-bottom: 32px;
+    }
+    .field-date {
+        width: 400px;
+        background: none;
+        border-radius: 0;
+        padding: 0 0 16px;
+        margin-bottom: 16px;
+        border-bottom: 2px solid @ivori-black-primary;
+
+        .ant-picker-input > input {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: @ivori-black;
+        }
+    }
+    .ant-picker:hover, .ant-picker-focused {
+        border-right: none;
+        border-bottom: 2px solid @ivori-black-primary;
+        box-shadow: none;
+    }
+    .anticon > svg {
+        width: 24px !important;
+        height: 24px !important;
+        color: @ivori-black;
+    }
+    .ant-select-arrow .anticon > svg {
+        width: 14px !important;
+        height: 14px !important;
+    }
+}
+
+.ant-input-affix-wrapper {
+    padding: 0 0 1rem;
 }
 
 .ant-input-affix-wrapper:focus, .ant-input-affix-wrapper-focused {
@@ -418,6 +522,11 @@ p {
     border-color: @ivori-black-primary;
     border-right-width: 0 !important;
     z-index: 1;
+}
+
+.ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    border: none;
+    box-shadow: none;
 }
 
 input::-webkit-inner-spin-button,
@@ -469,8 +578,8 @@ input::-webkit-outer-spin-button {
 }
 
 ::selection {
-    color: @ivori-black-primary;
-    background: 0 none;
+    color: @white-primary;
+    background: @ivori-black-primary;
 }
 
 .ant-btn:focus {
@@ -549,4 +658,77 @@ input::-webkit-outer-spin-button {
 
 .ant-steps-dot {
     overflow-x: visible !important;
+}
+
+.creator-base-page {
+    padding: 50px 0;
+    .create-statistic {
+        margin-bottom: 24px;
+        .ant-statistic-content {
+            align-items: center;
+        }
+        .ant-statistic-title {
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: unset;
+            letter-spacing: unset;
+            color: @ivori-black-tetiary;
+        }
+    }
+    .ant-statistic-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: @ivori-black-tetiary;
+    }
+    .usd {
+        font-size: 16px;
+        font-weight: 400;
+        opacity: 1;
+        color: @ivori-black-tetiary;
+        padding-bottom: 24px;
+    }
+}
+
+.ant-picker-time-panel-column
+> li.ant-picker-time-panel-cell
+.ant-picker-time-panel-cell-inner, .ant-picker-cell {
+    color: @ivori-black-primary;
+}
+
+.waiting-title {
+    font-size: 55px;
+    font-weight: 700;
+    line-height: 67px;
+    color: @ivori-black-primary;
+}
+
+.waiting-subtitle {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 39px;
+    margin-top: 1rem;
+    color: @ivori-black-tetiary;
+}
+
+.congrats-title {
+    font-size: 80px;
+    font-weight: 700;
+    line-height: 97px;
+    color: @ivori-black-primary;
+    text-align: center;
+}
+
+.progress {
+    position: relative;
+    font-size: 152px;
+    font-weight: 700;
+    line-height: 184px;
+}
+
+.progress::after {
+    position: absolute;
+    top: 35px;
+    font-size: 55px;
+    font-weight: 700;
+    content: '%'
 }

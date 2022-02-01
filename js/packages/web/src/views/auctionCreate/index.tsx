@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useMemo, useCallback, useRef } from 'react';
 import {
-  Divider,
   Steps,
   Row,
   Button,
@@ -16,7 +15,6 @@ import {
 } from 'antd';
 import { ArtCard } from './../../components/ArtCard';
 import { MINIMUM_SAFE_FEE_AUCTION_CREATION, QUOTE_MINT, LABELS } from './../../constants';
-import { Confetti } from './../../components/Confetti';
 import { ArtSelector } from './artSelector';
 import {
   MAX_METADATA_LEN,
@@ -39,7 +37,6 @@ import { Connection, LAMPORTS_PER_SOL, PublicKey } from '@solana/web3.js';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { MintInfo, MintLayout } from '@solana/spl-token';
 import { useHistory, useParams } from 'react-router-dom';
-import { capitalize } from 'lodash';
 import {
   WinningConfigType,
   AmountRange,
@@ -674,7 +671,7 @@ export const AuctionCreateView = () => {
 
   return (
     <>
-      <Row className="creator-base-page" style={{ paddingTop: 50 }}>
+      <Row className="creator-base-page">
         {stepsVisible && (
           <Col span={24} md={4}>
             <Steps
@@ -795,7 +792,7 @@ const InstantSaleStep = ({
 
   return (
     <>
-      <Row className="call-to-action" style={{ marginBottom: 0 }}>
+      <Row className="call-to-action">
         <h2>Select which item to sell</h2>
       </Row>
 
@@ -950,7 +947,7 @@ const CopiesStep = (props: {
 
   return (
     <>
-      <Row className="call-to-action" style={{ marginBottom: 0 }}>
+      <Row className="call-to-action">
         <h2>Select which item to sell</h2>
         <p style={{ fontSize: '1.2rem' }}>
           Select the item(s) that you want to list.
@@ -1007,12 +1004,10 @@ const CopiesStep = (props: {
       </Row>
       <Row>
         <Button
-          type="primary"
-          size="large"
           onClick={() => {
             props.confirm();
           }}
-          className="action-btn"
+          className="ivri-btn--contained"
         >
           Continue to Terms
         </Button>
@@ -1087,12 +1082,7 @@ const NumberOfWinnersStep = (props: {
         </Col>
       </Row>
       <Row>
-        <Button
-          type="primary"
-          size="large"
-          onClick={props.confirm}
-          className="action-btn"
-        >
+        <Button onClick={props.confirm} className="ivri-btn--contained">
           Continue
         </Button>
       </Row>
@@ -1198,12 +1188,7 @@ const PriceAuction = (props: {
         </Col>
       </Row>
       <Row>
-        <Button
-          type="primary"
-          size="large"
-          onClick={props.confirm}
-          className="action-btn"
-        >
+        <Button onClick={props.confirm} className="ivri-btn--contained">
           Continue
         </Button>
       </Row>
@@ -1359,12 +1344,7 @@ const InitialPhaseStep = (props: {
         </Col>
       </Row>
       <Row>
-        <Button
-          type="primary"
-          size="large"
-          onClick={props.confirm}
-          className="action-btn"
-        >
+        <Button onClick={props.confirm} className="ivri-btn--contained">
           Continue
         </Button>
       </Row>
@@ -1390,33 +1370,33 @@ const EndingPhaseAuction = (props: {
             <span className="field-info">
               This is how long the auction will last for.
             </span>
-            <Input
-              addonAfter={
-                <Select
-                  defaultValue={props.attributes.auctionDurationType}
-                  onChange={value =>
-                    props.setAttributes({
-                      ...props.attributes,
-                      auctionDurationType: value,
-                    })
-                  }
-                >
-                  <Option value="minutes">Minutes</Option>
-                  <Option value="hours">Hours</Option>
-                  <Option value="days">Days</Option>
-                </Select>
-              }
-              autoFocus
-              type="number"
-              className="input"
-              placeholder="Set the auction duration"
-              onChange={info =>
-                props.setAttributes({
-                  ...props.attributes,
-                  auctionDuration: parseInt(info.target.value),
-                })
-              }
-            />
+            <div className="field-input">
+              <Input
+                autoFocus
+                type="number"
+                className="input"
+                placeholder="Set the auction duration"
+                onChange={info =>
+                  props.setAttributes({
+                    ...props.attributes,
+                    auctionDuration: parseInt(info.target.value),
+                  })
+                }
+              />
+              <Select
+                defaultValue={props.attributes.auctionDurationType}
+                onChange={value =>
+                  props.setAttributes({
+                    ...props.attributes,
+                    auctionDurationType: value,
+                  })
+                }
+              >
+                <Option value="minutes">Minutes</Option>
+                <Option value="hours">Hours</Option>
+                <Option value="days">Days</Option>
+              </Select>
+            </div>
           </div>
 
           <div className="action-field">
@@ -1426,32 +1406,32 @@ const EndingPhaseAuction = (props: {
               time left on the countdown. Any bids placed during the final phase
               will extend the end time by this same duration.
             </span>
-            <Input
-              addonAfter={
-                <Select
-                  defaultValue={props.attributes.gapTimeType}
-                  onChange={value =>
-                    props.setAttributes({
-                      ...props.attributes,
-                      gapTimeType: value,
-                    })
-                  }
-                >
-                  <Option value="minutes">Minutes</Option>
-                  <Option value="hours">Hours</Option>
-                  <Option value="days">Days</Option>
-                </Select>
-              }
-              type="number"
-              className="input"
-              placeholder="Set the gap time"
-              onChange={info =>
-                props.setAttributes({
-                  ...props.attributes,
-                  gapTime: parseInt(info.target.value),
-                })
-              }
-            />
+            <div className="field-input">
+              <Input
+                type="number"
+                className="input"
+                placeholder="Set the gap time"
+                onChange={info =>
+                  props.setAttributes({
+                    ...props.attributes,
+                    gapTime: parseInt(info.target.value),
+                  })
+                }
+              />
+              <Select
+                defaultValue={props.attributes.gapTimeType}
+                onChange={value =>
+                  props.setAttributes({
+                    ...props.attributes,
+                    gapTimeType: value,
+                  })
+                }
+              >
+                <Option value="minutes">Minutes</Option>
+                <Option value="hours">Hours</Option>
+                <Option value="days">Days</Option>
+              </Select>
+            </div>
           </div>
 
           <label className="action-field">
@@ -1477,12 +1457,7 @@ const EndingPhaseAuction = (props: {
         </Col>
       </Row>
       <Row>
-        <Button
-          type="primary"
-          size="large"
-          onClick={props.confirm}
-          className="action-btn"
-        >
+        <Button onClick={props.confirm} className="ivri-btn--contained">
           Continue
         </Button>
       </Row>
@@ -1900,52 +1875,53 @@ const ReviewStep = (props: {
             }
           />
           {cost ? (
-            <AmountLabel title="Cost to Create" amount={cost} tokenInfo={useTokenList().tokenMap.get(WRAPPED_SOL_MINT.toString())}/>
+            <div>
+              <div className="ant-statistic-title">Cost to Create</div>
+              <AmountLabel
+                title=""
+                containerStyle={{alignItems: 'center'}}
+                amount={100}
+                tokenInfo={useTokenList().tokenMap.get(WRAPPED_SOL_MINT.toString())}/>
+            </div>
           ) : (
             <Spin />
           )}
-        </Col>
-      </Row>
-      <Row style={{ display: 'block' }}>
-        <Divider />
-        <Statistic
-          className="create-statistic"
-          title="Start date"
-          value={
-            props.attributes.startSaleTS
-              ? moment
-                  .unix(props.attributes.startSaleTS as number)
-                  .format('dddd, MMMM Do YYYY, h:mm a')
-              : 'Right after successfully published'
-          }
-        />
-        <br />
-        {props.attributes.startListTS && (
           <Statistic
             className="create-statistic"
-            title="Listing go live date"
-            value={moment
-              .unix(props.attributes.startListTS as number)
-              .format('dddd, MMMM Do YYYY, h:mm a')}
+            title="Start date"
+            value={
+              props.attributes.startSaleTS
+                ? moment
+                    .unix(props.attributes.startSaleTS as number)
+                    .format('dddd, MMMM Do YYYY, h:mm a')
+                : 'Right after successfully published'
+            }
           />
-        )}
-        <Divider />
-        <Statistic
-          className="create-statistic"
-          title="Sale ends"
-          value={
-            props.attributes.endTS
-              ? moment
-                  .unix(props.attributes.endTS as number)
-                  .format('dddd, MMMM Do YYYY, h:mm a')
-              : 'Until sold'
-          }
-        />
+          {props.attributes.startListTS && (
+            <Statistic
+              className="create-statistic"
+              title="Listing go live date"
+              value={moment
+                .unix(props.attributes.startListTS as number)
+                .format('dddd, MMMM Do YYYY, h:mm a')}
+            />
+          )}
+          <Statistic
+            className="create-statistic"
+            title="Sale ends"
+            value={
+              props.attributes.endTS
+                ? moment
+                    .unix(props.attributes.endTS as number)
+                    .format('dddd, MMMM Do YYYY, h:mm a')
+                : 'Until sold'
+            }
+          />
+        </Col>
       </Row>
       <Row>
         <Button
-          type="primary"
-          size="large"
+          className="ivri-btn--contained"
           onClick={() => {
             if (balance < MINIMUM_SAFE_FEE_AUCTION_CREATION) {
               setShowFundsIssueModal(true)
@@ -1953,7 +1929,6 @@ const ReviewStep = (props: {
               handleConfirm()
             }
           }}
-          className="action-btn"
         >
           {props.attributes.category === AuctionCategory.InstantSale
             ? 'List for Sale'
@@ -1999,9 +1974,9 @@ const WaitingStep = (props: {
         alignItems: 'center',
       }}
     >
-      <Progress type="circle" percent={progress} />
+      <div className="progress">{progress.toString().padStart(2, '0')}</div>
       <div className="waiting-title">
-        Your creation is being listed with Metaplex...
+        Your creation is being listed with {LABELS.STORE_NAME}
       </div>
       <div className="waiting-subtitle">This can take up to 30 seconds.</div>
     </div>
@@ -2041,19 +2016,12 @@ const Congrats = (props: {
           alignItems: 'center',
         }}
       >
-        <div className="waiting-title">
-          Congratulations! Your auction is now live.
+        <div className="congrats-title">
+          Congratulations!<br/>Your auction is now live.
         </div>
         <div className="congrats-button-container">
           <Button
-            className="metaplex-button"
-            onClick={_ => window.open(newTweetURL(), '_blank')}
-          >
-            <span>Share it on Twitter</span>
-            <span>&gt;</span>
-          </Button>
-          <Button
-            className="metaplex-button"
+            className="ivri-btn--contained"
             onClick={() => {
                 history.push(`/`);
                 history.go(0);
@@ -2061,11 +2029,12 @@ const Congrats = (props: {
             }
           >
             <span>See it in your auctions</span>
-            <span>&gt;</span>
+          </Button>
+          <Button onClick={_ => window.open(newTweetURL(), '_blank')}>
+            <span>Share it on Twitter</span>
           </Button>
         </div>
       </div>
-      <Confetti />
     </>
   );
 };

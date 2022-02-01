@@ -42,7 +42,7 @@ export const ArtSelector = (props: ArtSelectorProps) => {
 
   return (
     <>
-      <div>
+      <div className="art-selector">
         {selected.map(m => {
           const key = m?.metadata.pubkey || '';
           return (
@@ -58,11 +58,7 @@ export const ArtSelector = (props: ArtSelectorProps) => {
           );
         })}
         {(allowMultiple || selectedItems.size === 0) && (
-          <div
-            className="ant-card ant-card-bordered art-card"
-            style={{ width: 200, height: 300, display: 'flex' }}
-            onClick={open}
-          >
+          <div className="ant-card ant-card-bordered art-card" onClick={open}>
             <span className="text-center">Add an NFT</span>
           </div>
         )}
