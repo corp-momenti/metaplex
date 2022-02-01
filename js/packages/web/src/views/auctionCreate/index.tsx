@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useMemo, useCallback, useRef } from 'react';
 import {
-  Divider,
   Steps,
   Row,
   Button,
@@ -16,7 +15,6 @@ import {
 } from 'antd';
 import { ArtCard } from './../../components/ArtCard';
 import { MINIMUM_SAFE_FEE_AUCTION_CREATION, QUOTE_MINT, LABELS } from './../../constants';
-import { Confetti } from './../../components/Confetti';
 import { ArtSelector } from './artSelector';
 import {
   MAX_METADATA_LEN,
@@ -39,7 +37,6 @@ import { Connection, LAMPORTS_PER_SOL, PublicKey } from '@solana/web3.js';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { MintInfo, MintLayout } from '@solana/spl-token';
 import { useHistory, useParams } from 'react-router-dom';
-import { capitalize } from 'lodash';
 import {
   WinningConfigType,
   AmountRange,
@@ -1977,9 +1974,9 @@ const WaitingStep = (props: {
         alignItems: 'center',
       }}
     >
-      <Progress type="circle" percent={progress} />
+      <div className="progress">{progress.toString().padStart(2, '0')}</div>
       <div className="waiting-title">
-        Your creation is being listed with Metaplex...
+        Your creation is being listed with {LABELS.STORE_NAME}
       </div>
       <div className="waiting-subtitle">This can take up to 30 seconds.</div>
     </div>
@@ -2019,19 +2016,12 @@ const Congrats = (props: {
           alignItems: 'center',
         }}
       >
-        <div className="waiting-title">
-          Congratulations! Your auction is now live.
+        <div className="congrats-title">
+          Congratulations!<br/>Your auction is now live.
         </div>
         <div className="congrats-button-container">
           <Button
-            className="metaplex-button"
-            onClick={_ => window.open(newTweetURL(), '_blank')}
-          >
-            <span>Share it on Twitter</span>
-            <span>&gt;</span>
-          </Button>
-          <Button
-            className="metaplex-button"
+            className="ivri-btn--contained"
             onClick={() => {
                 history.push(`/`);
                 history.go(0);
@@ -2039,11 +2029,12 @@ const Congrats = (props: {
             }
           >
             <span>See it in your auctions</span>
-            <span>&gt;</span>
+          </Button>
+          <Button onClick={_ => window.open(newTweetURL(), '_blank')}>
+            <span>Share it on Twitter</span>
           </Button>
         </div>
       </div>
-      <Confetti />
     </>
   );
 };
