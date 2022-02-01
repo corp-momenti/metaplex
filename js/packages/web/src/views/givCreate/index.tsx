@@ -86,6 +86,7 @@ export const GivCreateView = () => {
     properties: {
       files: [],
       category: MetadataCategory.GIV,
+      maxSupply: 0,
     },
   });
 
@@ -625,7 +626,7 @@ const InfoStep = (props: {
               allowClear
             />
           </label>
-          <label className="action-field">
+          {/* <label className="action-field">
             <span className="field-title">Maximum Supply</span>
             <InputNumber
               placeholder="Quantity"
@@ -640,7 +641,7 @@ const InfoStep = (props: {
               }}
               className="royalties-input"
             />
-          </label>
+          </label> */}
           <label className="action-field">
             <span className="field-title">Attributes</span>
           </label>
