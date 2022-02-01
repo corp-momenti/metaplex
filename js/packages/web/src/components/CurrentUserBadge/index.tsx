@@ -287,12 +287,12 @@ export const CurrentUserBadge = (props: {
                 </div>
                 <hr/>
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  <Button
+                  {/* <Button
                     className="metaplex-button-default ivri-btn ivri-btn--plain"
                     onClick={() => setShowAddFundsModal(true)}
                     style={btnStyle}>
                     Add Funds
-                  </Button>
+                  </Button> */}
                   <Button
                     className="metaplex-button-default ivri-btn ivri-btn--plain"
                     onClick={disconnect}
