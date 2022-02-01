@@ -64,7 +64,7 @@ export const GivCreateView = () => {
   const { width } = useWindowDimensions();
   const [nftCreateProgress, setNFTcreateProgress] = useState<number>(0);
 
-  const [step, setStep] = useState<number>(0);
+  const [step, setStep] = useState<number>(1);
   const [stepsVisible, setStepsVisible] = useState<boolean>(true);
   const [isMinting, setMinting] = useState<boolean>(false);
   const [nft, setNft] =
@@ -82,7 +82,7 @@ export const GivCreateView = () => {
     creators: [],
     properties: {
       files: [],
-      category: MetadataCategory.Image,
+      category: MetadataCategory.GIV,
     },
   });
 
@@ -96,7 +96,7 @@ export const GivCreateView = () => {
 
   useEffect(() => {
     if (step_param) setStep(parseInt(step_param));
-    else gotoStep(0);
+    else gotoStep(1);
   }, [step_param, gotoStep]);
 
   // store files
