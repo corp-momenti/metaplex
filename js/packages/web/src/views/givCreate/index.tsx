@@ -54,6 +54,9 @@ const { Step } = Steps;
 const { Dragger } = Upload;
 const { Text } = Typography;
 
+// 10%
+const DEFAULT_ROYALTY = 1000;
+
 export const GivCreateView = () => {
   const connection = useConnection();
   const { endpoint } = useConnectionConfig();
@@ -64,7 +67,7 @@ export const GivCreateView = () => {
   const { width } = useWindowDimensions();
   const [nftCreateProgress, setNFTcreateProgress] = useState<number>(0);
 
-  const [step, setStep] = useState<number>(0);
+  const [step, setStep] = useState<number>(1);
   const [stepsVisible, setStepsVisible] = useState<boolean>(true);
   const [isMinting, setMinting] = useState<boolean>(false);
   const [nft, setNft] =
@@ -78,11 +81,12 @@ export const GivCreateView = () => {
     image: '',
     animation_url: undefined,
     attributes: undefined,
-    seller_fee_basis_points: 0,
+    seller_fee_basis_points: DEFAULT_ROYALTY,
     creators: [],
     properties: {
       files: [],
-      category: MetadataCategory.Image,
+      category: MetadataCategory.GIV,
+      maxSupply: 0,
     },
   });
 
@@ -96,7 +100,7 @@ export const GivCreateView = () => {
 
   useEffect(() => {
     if (step_param) setStep(parseInt(step_param));
-    else gotoStep(0);
+    else gotoStep(1);
   }, [step_param, gotoStep]);
 
   // store files
@@ -622,7 +626,7 @@ const InfoStep = (props: {
               allowClear
             />
           </label>
-          <label className="action-field">
+          {/* <label className="action-field">
             <span className="field-title">Maximum Supply</span>
             <InputNumber
               placeholder="Quantity"
@@ -637,7 +641,7 @@ const InfoStep = (props: {
               }}
               className="royalties-input"
             />
-          </label>
+          </label> */}
           <label className="action-field">
             <span className="field-title">Attributes</span>
           </label>
@@ -857,6 +861,7 @@ const RoyaltiesStep = (props: {
             autoFocus
             min={0}
             max={100}
+            value={props.attributes.seller_fee_basis_points / 100}
             placeholder="Between 0 and 100"
             onChange={(val: number) => {
               props.setAttributes({
