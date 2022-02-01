@@ -49,7 +49,7 @@ const UserActions = (props: { mobile?: boolean; onClick?: any }) => {
           <div className="actions-buttons actions-user">
             {canCreate && (
               <>
-                <Link to={`/art/create`}>
+                {/* <Link to={`/art/create`}>
                   <Button
                     onClick={() => {
                       props.onClick ? props.onClick() : null;
@@ -58,7 +58,7 @@ const UserActions = (props: { mobile?: boolean; onClick?: any }) => {
                   >
                     Create
                   </Button>
-                </Link>
+                </Link> */}
                 <Link to={`/giv/create`}>
                   <Button
                     onClick={() => {
@@ -91,11 +91,11 @@ const UserActions = (props: { mobile?: boolean; onClick?: any }) => {
           >
             {canCreate && (
               <>
-                <Link to={`/art/create`} style={{ width: '100%' }}>
+                {/* <Link to={`/art/create`} style={{ width: '100%' }}>
                   <Button className="metaplex-button-default ivri-btn ivri-btn--plain" style={btnStyle}>
                     Create
                   </Button>
-                </Link>
+                </Link> */}
                 <Link to={`/giv/create`} style={{ width: '100%' }}>
                   <Button className="metaplex-button-default ivri-btn ivri-btn--plain" style={btnStyle}>
                     Create Giv
