@@ -54,6 +54,9 @@ const { Step } = Steps;
 const { Dragger } = Upload;
 const { Text } = Typography;
 
+// 10%
+const DEFAULT_ROYALTY = 1000;
+
 export const GivCreateView = () => {
   const connection = useConnection();
   const { endpoint } = useConnectionConfig();
@@ -78,7 +81,7 @@ export const GivCreateView = () => {
     image: '',
     animation_url: undefined,
     attributes: undefined,
-    seller_fee_basis_points: 0,
+    seller_fee_basis_points: DEFAULT_ROYALTY,
     creators: [],
     properties: {
       files: [],
@@ -857,6 +860,7 @@ const RoyaltiesStep = (props: {
             autoFocus
             min={0}
             max={100}
+            value={props.attributes.seller_fee_basis_points / 100}
             placeholder="Between 0 and 100"
             onChange={(val: number) => {
               props.setAttributes({
