@@ -82,7 +82,7 @@ export const ArtCard = (props: ArtCardProps) => {
               preview={preview}
               height={height}
               width={width}
-              artView={artView}
+              artView={false}
               className="auction-image no-events"
             />
           </div>
