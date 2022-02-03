@@ -47,8 +47,8 @@ export const MetaAvatar = (props: {
     return <Avatar size={size} src={false} />;
   }
 
-  const controls = (creators || []).map(creator => (
-    <MetaAvatarItem creator={creator} alt={creator.name} size={size} />
+  const controls = (creators || []).map((creator, _idx) => (
+    <MetaAvatarItem key={_idx} creator={creator} alt={creator.name} size={size} />
   ));
 
   if (!showMultiple) {
@@ -70,9 +70,9 @@ export const MetaAvatarDetailed = (props: {
   return (
     <div>
       {(creators || []).map((creator, _idx) => (
-        <div style={{ display: 'flex' }} key={_idx}>
+        <div className="meta-avatar" key={_idx}>
           <MetaAvatarItem creator={creator} alt={creator.name} size={size} />
-          <p style={{ marginLeft: 10 }}>
+          <p>
             {creator.name ? creator.name : 'No name provided.'}
           </p>
         </div>
