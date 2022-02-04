@@ -508,9 +508,9 @@ export const AuctionCard = ({
       <div className={'time-info'}>
         {!auctionView.isInstantSale && (
           <>
-            <span>Auction ends in</span>
+            <span>Ending in</span>
             <div>
-              <AuctionCountdown auctionView={auctionView} labels={false} />
+              <AuctionCountdown auctionView={auctionView} labels={false} isAuctionRender={false} />
             </div>
           </>
         )}
@@ -601,141 +601,105 @@ export const AuctionCard = ({
                 )}
               </Button>
             )}
-          {showPlaceBid ? (
+          {showPlaceBid && (
             <div className="show-place-bid">
               <AmountLabel
-                title="in your wallet"
-                displaySymbol={tokenInfo?.symbol || 'CUSTOM'}
+                title="Your Wallet"
                 style={{ marginBottom: 0 }}
                 amount={balance.balance}
                 tokenInfo={tokenInfo}
                 customPrefix={
                   <Identicon
                     address={wallet?.publicKey?.toBase58()}
-                    style={{ width: 36 }}
+                    style={{ width: 24 }}
                   />
                 }
               />
             </div>
-          ) : (
-            <div className="actions-place-bid">
-              <HowAuctionsWorkModal buttonClassName="black-btn" />
-              {!hideDefaultAction &&
-                !auctionView.auction.info.ended() &&
-                (wallet.connected &&
-                isAuctionNotStarted &&
-                !isAuctionManagerAuthorityNotWalletOwner ? (
-                  <Button
-                    className="secondary-btn"
-                    disabled={loading}
-                    onClick={async () => {
-                      setLoading(true);
-                      try {
-                        await startAuctionManually(
-                          connection,
-                          wallet,
-                          auctionView,
-                        );
-                      } catch (e) {
-                        console.error(e);
-                      }
-                      setLoading(false);
-                    }}
-                    style={{ marginTop: 20 }}
-                  >
-                    {loading ? <Spin /> : 'Start auction'}
-                  </Button>
-                ) : (
-                  !showPlaceBid && (
-                    <Button
-                      className="secondary-btn"
-                      onClick={() => {
-                        if (wallet.connected) setShowPlaceBid(true);
-                        else connect();
-                      }}
-                    >
-                      Place Bid
-                    </Button>
-                  )
-                ))}
-            </div>
           )}
         </div>
+        {!showPlaceBid && (
+          <div className="actions-place-bid">
+            <HowAuctionsWorkModal buttonClassName="ivri-btn--outline" />
+            {!hideDefaultAction &&
+              !auctionView.auction.info.ended() &&
+              (wallet.connected &&
+              isAuctionNotStarted &&
+              !isAuctionManagerAuthorityNotWalletOwner ? (
+                <Button
+                  className="ivri-btn--outline"
+                  disabled={loading}
+                  onClick={async () => {
+                    setLoading(true);
+                    try {
+                      await startAuctionManually(
+                        connection,
+                        wallet,
+                        auctionView,
+                      );
+                    } catch (e) {
+                      console.error(e);
+                    }
+                    setLoading(false);
+                  }}
+                  style={{ marginTop: 20 }}
+                >
+                  {loading ? <Spin /> : 'Start auction'}
+                </Button>
+              ) : (
+                !showPlaceBid && (
+                  <Button
+                  className="ivri-btn--outline"
+                    onClick={() => {
+                      if (wallet.connected) setShowPlaceBid(true);
+                      else connect();
+                    }}
+                  >
+                    Place a bid
+                  </Button>
+                )
+              ))}
+          </div>
+        )}
         {showPlaceBid &&
           !auctionView.isInstantSale &&
           !hideDefaultAction &&
           wallet.connected &&
           !auctionView.auction.info.ended() && (
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                marginTop: '15px',
-                marginBottom: '10px',
-                borderTop: '1px solid rgba(255, 255, 255, 0.1)',
-                paddingTop: '15px',
-              }}
-            >
-              <div
-                style={{
-                  margin: '0 0 12px 0',
-                  letterSpacing: '0.02em',
-                  fontStyle: 'normal',
-                  fontWeight: 400,
-                  fontSize: '14px',
-                  lineHeight: '14px',
-                  textTransform: 'uppercase',
-                  color: 'rgba(255, 255, 255, 0.7)',
-                }}
-              >
-                your bid
+            <div className="bid-form">
+              <div className="bid-form-title">
+                Your Bid
               </div>
               <div className={'bid-container'}>
-                <div
-                  style={{
-                    width: '100%',
-                    background: '#242424',
-                    borderRadius: 14,
-                    color: 'rgba(0, 0, 0, 0.5)',
-                  }}
-                >
+                <div>
                   <InputNumber
                     autoFocus
                     className="input sol-input-bid"
                     value={value}
                     onChange={setValue}
                     precision={4}
-                    style={{ fontSize: 16, lineHeight: '16px' }}
                     formatter={value =>
                       value
-                        ? `◎ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                        ? `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
                         : ''
                     }
                     placeholder={
                       minBid === 0
-                        ? `Place a Bid`
+                        ? `Place a bid`
                         : `Bid ${minBid} ${symbol} or more`
                     }
                   />
                 </div>
                 <div className={'bid-buttons'}>
                   <Button
-                    className="metaplex-button-default"
-                    style={{
-                      background: 'transparent',
-                      color: 'white',
-                      width: 'unset',
-                      fontWeight: 600,
-                      letterSpacing: '-0.02em',
-                      border: 'none',
-                    }}
+                    className="ivri-btn--outline"
                     disabled={loading}
                     onClick={() => setShowPlaceBid(false)}
                   >
                     Cancel
                   </Button>
                   <Button
-                    className="secondary-btn"
+                    className="ivri-btn--contained"
                     disabled={invalidBid}
                     onClick={async () => {
                       setLoading(true);
@@ -758,7 +722,7 @@ export const AuctionCard = ({
                     {loading || !accountByMint.get(QUOTE_MINT.toBase58()) ? (
                       <Spin />
                     ) : (
-                      'Bid now'
+                      'Place a bid'
                     )}
                   </Button>
                 </div>
@@ -788,7 +752,7 @@ export const AuctionCard = ({
               {loading ? <Spin /> : 'Start auction'}
             </Button>
           ) : loading ? (
-            <Spin />
+            null
           ) : (
             auctionView.isInstantSale &&
             !isAlreadyBought && (
@@ -805,16 +769,16 @@ export const AuctionCard = ({
             )
           ))}
         {!hideDefaultAction && !wallet.connected && (
-          <Button
-            type="primary"
-            size="large"
-            className="action-btn"
-            onClick={connect}
-            style={{ marginTop: 20 }}
-          >
-            Connect wallet to{' '}
-            {auctionView.isInstantSale ? 'purchase' : 'place bid'}
-          </Button>
+          <div>
+            <Button
+              className="ivri-btn--contained"
+              onClick={connect}
+              style={{ marginTop: 20 }}
+            >
+              Connect wallet to{' '}
+              {auctionView.isInstantSale ? 'Purchase' : 'Place a bid'}
+            </Button>
+          </div>
         )}
         {action}
         {showRedemptionIssue && (

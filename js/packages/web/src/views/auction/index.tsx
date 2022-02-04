@@ -15,6 +15,7 @@ import {
 import { ArtContent } from '../../components/ArtContent';
 
 import { format } from 'timeago.js';
+import chunk from 'lodash/chunk';
 
 import {
   AuctionState,
@@ -66,7 +67,7 @@ export const AuctionItem = ({
     zIndex: -1 * index,
     marginLeft: size > 1 && index === 0 ? '0px' : 'auto',
     // background: 'black',
-    boxShadow: 'rgb(0 0 0 / 10%) 12px 2px 20px 14px',
+    // boxShadow: 'rgb(0 0 0 / 10%) 12px 2px 20px 14px',
     aspectRatio: '1/1',
   };
   return (
@@ -109,7 +110,13 @@ export const AuctionView = () => {
     auction?.auction.info.bidState.type === BidStateType.OpenEdition;
   const hasDescription = data === undefined || data.description === undefined;
   const description = data?.description;
-  const attributes = data?.attributes;
+  // const attributes = data?.attributes;
+  const attributes = [
+    {trait_type: 'hello', value: 'world'},
+    {trait_type: 'hello', value: 'world'},
+    {trait_type: 'hello', value: 'world'},
+    {trait_type: 'hello', value: 'world'}
+  ];
 
   const tokenInfo = useTokenList()?.mainnetTokens.filter(
     m => m.address == auction?.auction.info.tokenMint,
@@ -217,19 +224,18 @@ export const AuctionView = () => {
           </div>
         </Col>
         {attributes && (
-          <Col
-            className="auction-mobile-section about-nft-collection a-attributes"
-            span={24}
-          >
-            <h6>Attributes</h6>
-            <List grid={{ column: 4 }}>
-              {attributes.map((attribute, index) => (
-                <List.Item key={`${attribute.value}-${index}`}>
-                  <Card title={attribute.trait_type}>{attribute.value}</Card>
-                </List.Item>
-              ))}
-            </List>
-          </Col>
+          <div className="auction-mobile-section about-nft-collection a-attributes">
+            {chunk(attributes, 2).map((row, rowIndex) => (
+              <Row key={rowIndex}>
+                {row.map(({trait_type, value}, colIndex) => (
+                  <Col key={colIndex} span={12}>
+                    <div className="trait">{trait_type}</div>
+                    <div className="value">{value}</div>
+                  </Col>
+                ))}
+              </Row>
+            ))}
+          </div>
         )}
         <Col className="auction-mobile-section" span={24}>
           <div className={'info-view'}>
@@ -275,7 +281,7 @@ export const AuctionView = () => {
     );
   } else {
     return (
-      <Row justify="center" ref={ref} gutter={[48, 0]}>
+      <Row justify="center" ref={ref} gutter={[48, 0]} style={{marginBottom: 100}}>
         <Col span={24} md={10} className={'img-cont-500'}>
           <div className="auction-view" style={{ minHeight: 300 }}>
             <Carousel
@@ -285,10 +291,10 @@ export const AuctionView = () => {
               {items}
             </Carousel>
           </div>
-          <h6 className={'about-nft-collection'}>
-            ABOUT THIS {nftCount === 1 ? 'NFT' : 'COLLECTION'}
+          <h6 className="about-nft-collection">
+            Description
           </h6>
-          <p className={'about-nft-collection a-description'}>
+          <p className="about-nft-collection a-description">
             {hasDescription && <Skeleton paragraph={{ rows: 3 }} />}
             {description ||
               (winnerCount !== undefined && (
@@ -298,15 +304,17 @@ export const AuctionView = () => {
               ))}
           </p>
           {attributes && (
-            <div className={'about-nft-collection a-attributes'}>
-              <h6>Attributes</h6>
-              <List grid={{ column: 4 }}>
-                {attributes.map((attribute, index) => (
-                  <List.Item key={`${attribute.value}-${index}`}>
-                    <Card title={attribute.trait_type}>{attribute.value}</Card>
-                  </List.Item>
-                ))}
-              </List>
+            <div className="about-nft-collection a-attributes">
+              {chunk(attributes, 2).map((row, rowIndex) => (
+                <Row key={rowIndex}>
+                  {row.map(({trait_type, value}, colIndex) => (
+                    <Col key={colIndex} span={12}>
+                      <div className="trait">{trait_type}</div>
+                      <div className="value">{value}</div>
+                    </Col>
+                  ))}
+                </Row>
+              ))}
             </div>
           )}
           {/* {auctionData[id] && (
@@ -318,20 +326,19 @@ export const AuctionView = () => {
         </Col>
 
         <Col span={24} md={14}>
+          {art.type === ArtType.NFT || <div className="badge">UNIQUE</div>}
           <h2 className="art-title">
             {art.title || <Skeleton paragraph={{ rows: 0 }} />}
           </h2>
           <Row gutter={[44, 0]}>
-            <Col span={12} md={16}>
+            <Col span={12} md={14}>
               <div className={'info-container'}>
-                <div className={'info-component'}>
-                  <h6 className={'info-title'}>CREATED BY</h6>
-                  <span>{<MetaAvatar creators={creators} />}</span>
-                </div>
-                <div className={'info-component'}>
-                  <h6 className={'info-title'}>Edition</h6>
-                  <span>
-                    {(auction?.items.length || 0) > 1 ? 'Multiple' : edition}
+                <div className="info-component avatar">
+                  <MetaAvatar creators={creators} size={48} />
+                  <span className="artist-name">
+                      {creators[0]?.name ||
+                        creators[0]?.address?.substr(0, 6) ||
+                        ''}
                   </span>
                 </div>
                 <div className={'info-component'}>
@@ -358,58 +365,31 @@ export const AuctionView = () => {
                     )}
                   </span>
                 </div>
-                <div className={'info-component'}>
-                  <h6 className={'info-title'}>CURRENCY</h6>
-                  <span>
-                    {nftCount === undefined ? (
-                      <Skeleton paragraph={{ rows: 0 }} />
-                    ) : (
-                      `${tokenInfo?.name || 'Custom Token'} ($${
-                        tokenInfo?.symbol || 'CUSTOM'
-                      })`
-                    )}
-                    <ClickToCopy
-                      className="copy-pubkey"
-                      copyText={
-                        tokenInfo
-                          ? tokenInfo?.address
-                          : auction?.auction.info.tokenMint || ''
-                      }
-                    />
-                  </span>
-                </div>
               </div>
             </Col>
-            <Col span={12} md={8} className="view-on-container">
-              <div className="info-view-container">
-                <div className="info-view">
-                  <h6 className="info-title">View on</h6>
-                  <div style={{ display: 'flex' }}>
-                    <Button
-                      className="tag"
-                      onClick={() => window.open(art.uri || '', '_blank')}
-                    >
-                      Arweave
-                    </Button>
-                    <Button
-                      className="tag"
-                      onClick={() => {
-                        const cluster = endpoint.name;
-                        const explorerURL = new URL(
-                          `account/${art?.mint || ''}`,
-                          'https://explorer.solana.com',
-                        );
-                        if (!cluster.includes('mainnet')) {
-                          explorerURL.searchParams.set('cluster', cluster);
-                        }
-                        window.open(explorerURL.href, '_blank');
-                      }}
-                    >
-                      Solana
-                    </Button>
-                  </div>
-                </div>
-              </div>
+            <Col span={12} md={10} className="view-on-container">
+              <Button
+                className="ivri-btn--outline"
+                onClick={() => window.open(art.uri || '', '_blank')}
+              >
+                Metadata
+              </Button>
+              <Button
+                className="ivri-btn--outline"
+                onClick={() => {
+                  const cluster = endpoint.name;
+                  const explorerURL = new URL(
+                    `account/${art?.mint || ''}`,
+                    'https://explorer.solana.com',
+                  );
+                  if (!cluster.includes('mainnet')) {
+                    explorerURL.searchParams.set('cluster', cluster);
+                  }
+                  window.open(explorerURL.href, '_blank');
+                }}
+              >
+                Transaction
+              </Button>
             </Col>
           </Row>
 
@@ -489,12 +469,12 @@ const BidLine = (props: {
           <div>
             {!isCancelled && (
               <div className={'flex '}>
-                {isme && (
+                {/* {isme && (
                   <>
                     <CheckOutlined />
                     &nbsp;
                   </>
-                )}
+                )} */}
                 <AmountLabel
                   style={{ marginBottom: 0, fontSize: '16px' }}
                   containerStyle={{
@@ -533,19 +513,18 @@ const BidLine = (props: {
         <Col span={8}>
           {!isCancelled && (
             <div className={'flex '}>
-              {isme && (
+              {/* {isme && (
                 <>
                   <CheckOutlined />
                   &nbsp;
                 </>
-              )}
+              )} */}
               <AmountLabel
                 style={{ marginBottom: 0, fontSize: '16px' }}
                 containerStyle={{
                   flexDirection: 'row',
                   alignItems: 'center',
                 }}
-                displaySymbol={tokenInfo?.symbol || 'CUSTOM'}
                 tokenInfo={tokenInfo}
                 iconSize={24}
                 amount={formatTokenAmount(bid.info.lastBid, mint)}
@@ -553,7 +532,7 @@ const BidLine = (props: {
             </div>
           )}
         </Col>
-        <Col span={8} style={{ opacity: 0.7 }}>
+        <Col span={8} className="last-bid-time">
           {/* uses milliseconds */}
           {format(bid.info.lastBidTimestamp.toNumber() * 1000)}
         </Col>
@@ -650,7 +629,7 @@ export const AuctionBids = ({
   return (
     <Row>
       <Col className="bids-lists">
-        <h6 className={'info-title'}>Bid History</h6>
+        <h6 className={'info-title'}>History</h6>
         {bidLines.slice(0, 10)}
         {bids.length > 10 && (
           <div

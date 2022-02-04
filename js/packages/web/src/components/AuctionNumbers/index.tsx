@@ -22,8 +22,6 @@ export const AuctionCountdown = (props: {
   const state = useAuctionCountdown(auctionView);
   const ended = isEnded(state);
 
-  if ( props.isAuctionRender && !ended ) 
-
   if ( !ended ) {
     if ( props.isAuctionRender ) return <CountdownOnAuctionCard state={ state } />;
     if ( props.labels ) {
@@ -69,26 +67,26 @@ export const AuctionNumbers = (props: {
         <>
           {(isUpcoming || bids.length === 0 || auctionView.isInstantSale) && (
             <AmountLabel
-              displaySymbol={tokenInfo?.symbol || "CUSTOM"}
               style={{ marginBottom: props.showAsRow ? 0 : 10 }}
-              title={auctionView.isInstantSale ? 'Price' : 'Starting bid'}
-              tokenInfo = {tokenInfo}
+              title={auctionView.isInstantSale ? 'Price' : 'Starting Bid'}
+              tokenInfo={tokenInfo}
               amount={fromLamports(
                 participationOnly ? participationFixedPrice : priceFloor,
                 mintInfo,
               )}
+              iconSize={24}
             />
           )}
           {!auctionView.isInstantSale && isStarted && bids.length > 0 && (
             <AmountLabel
-            displaySymbol={tokenInfo?.symbol || "CUSTOM"}
               style={{ marginBottom: props.showAsRow ? 0 : 10 }}
               containerStyle={{
                 flexDirection: props.showAsRow ? ' row' : 'column',
               }}
-              title="Highest bid"
-              tokenInfo = {tokenInfo}
+              title="Current Bid"
+              tokenInfo={tokenInfo}
               amount={formatTokenAmount(bids[0].info.lastBid, mintInfo)}
+              iconSize={24}
             />
           )}
         </>
@@ -114,7 +112,7 @@ const CountdownOnAuctionCard = ({ state }: { state?: CountdownState }) => {
   
   return (
     <Row
-      className={`no-label-cd ${ isCountDown() ? 'is-count-down' : '' }`}
+      className={`cd-auction-card ${ isCountDown() ? 'is-count-down' : '' }`}
     >
         <Col><span className={'info-message'}>Ending in&nbsp;</span></Col>
       {localState.days > 0 && (
@@ -160,9 +158,7 @@ const Countdown = ({ state }: { state?: CountdownState }) => {
     };
   }
   return (
-    <Row
-      className={'no-label-cd'}
-    >
+    <Row className="cd">
       {localState.days > 0 && (
         <Col>
           <div className="cd-number">
@@ -180,7 +176,7 @@ const Countdown = ({ state }: { state?: CountdownState }) => {
       <Col>
         <div className="cd-number">
           {localState.minutes}
-          <span>min</span>
+          <span>minutes</span>
         </div>
       </Col>
       {!localState.days && (

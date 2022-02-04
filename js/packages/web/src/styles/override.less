@@ -67,8 +67,6 @@ body, .ant-modal {
     }
 }
 
-
-
 .ivri-btn--outline {
     border-radius: 0;
     border: 2px solid @ivori-black-primary !important;
@@ -129,6 +127,10 @@ body, .ant-modal {
         transition-property: background-color, color, border !important;
         transition-duration: .2s !important;
         transition-timing-function: @easeOut !important;
+    }
+    &:disabled, &:disabled:hover {
+        border: none;
+        background: @ivori-black-primary;
     }
 }
 
@@ -654,6 +656,8 @@ input::-webkit-outer-spin-button {
 
 .art-title {
     color: @ivori-black-primary !important;
+    margin-top: 0;
+    margin-bottom: 8px;
 }
 
 .ant-steps-dot {
@@ -731,4 +735,219 @@ input::-webkit-outer-spin-button {
     font-size: 55px;
     font-weight: 700;
     content: '%'
+}
+
+.about-nft-collection {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 29px;
+    color: @ivori-black-tetiary;
+    margin-top: 101px;
+}
+
+.about-nft-collection.a-description {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 19px;
+    color: @ivori-black-primary;
+    margin-top: 26px;
+}
+
+.art-title {
+    font-size: 90px;
+    font-weight: 700;
+    line-height: 109px;
+    color: @ivori-black;
+}
+
+
+.info-component {
+    &:first-child {
+        display: flex;
+        align-items: center;
+    }
+    .info-title {
+        font-size: 14px;
+        line-height: 17px;
+        color: @ivori-black-tetiary;
+    }
+    .artist-name {
+        max-width: 300px;
+        font-size: 1.5rem !important;
+        font-weight: 700;
+        color: @ivori-black-primary;
+        margin-left: 1rem;
+        margin-bottom: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.meta-avatar {
+    display: flex;
+    align-items: center;
+}
+
+.view-on-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    .ivri-btn--outline {
+        height: 32px;
+        padding: 0 12px;
+    }
+    .ivri-btn--outline:first-child {
+        margin-right: 28px;
+    }
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 4px;
+    color: @ivori-white;
+    background: @ivori-black-primary;
+}
+
+.content-action {
+    margin-bottom: 48px;
+}
+
+.auction-container {
+    margin-top: 200px;
+    margin-bottom: 115px;
+    .time-info {
+        display: block;
+        padding: 0;
+        & > span {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 29px;
+            color: @ivori-black-tetiary;
+        }
+    }
+    .bid-info {
+        padding: 2rem 0;
+        .create-statistic {
+            .ant-statistic-title {
+                font-size: 1.5rem;
+                font-weight: 700;
+                line-height: 29px;
+                text-transform: none;
+                color: @ivori-black-tetiary;
+            }
+            .ant-statistic-content {
+                display: flex;
+                align-items: baseline;
+            }
+            .ant-statistic-content-value {
+                font-size: 55px;
+                font-weight: 700;
+                line-height: 67px;
+            }
+        }
+        .usd {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 39px;
+        }
+        .bid-form {
+            margin-top: 32px;
+            .bid-container {
+                display: flex;
+                align-items: flex-end;
+            }
+            .bid-form-title {
+                font-size: 1.5rem;
+                font-weight: 700;
+                line-height: 29px;
+                text-transform: none;
+                color: @ivori-black-tetiary;
+                margin-bottom: 1rem;
+            }
+            .sol-input-bid {
+                height: unset;
+                background: none;
+                color: @ivori-black;
+                padding: 0;
+                border: none;
+                input {
+                    width: 400px;
+                    height: unset;
+                    font-size: 55px;
+                    font-weight: 700;
+                    line-height: 67px;
+                    margin-right: 63px;
+                    border-bottom: 2px solid @ivori-black;
+                }
+                input::placeholder {
+                    font-size: 24px;
+                    font-weight: 400;
+                }
+            }
+            .ant-input-number-focused {
+                border: none;
+                box-shadow: none;
+            }
+            .ivri-btn--contained {
+                margin-left: 1rem;
+            }
+        }
+        .actions-place-bid {
+            margin-top: 32px;
+        }
+        .actions-place-bid > button {
+            margin-right: 1rem;
+        }
+    }
+}
+
+.bids-lists {
+    padding: 0;
+    .info-title {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 29px;
+        color: @ivori-black-tetiary;
+    }
+    .bid-history {
+        margin-top: 1rem;
+        border-bottom: 2px solid @ivori-black;
+        .ant-statistic-content-prefix {
+            margin-right: 20px;
+        }
+        .ant-statistic-content-value {
+            font-size: 2rem;
+        }
+        .usd {
+            font-size: 18px;
+            color: @ivori-black-secondary;
+        }
+        .last-bid-time {
+            font-size: 1rem;
+            color: @ivori-black-tetiary;
+        }
+    }
+}
+
+.about-nft-collection.a-description {
+    margin-bottom: 0;
+}
+
+.about-nft-collection.a-attributes {
+    margin-top: 56px;
+    .trait {
+        font-size: 1rem;
+        font-weight: 700;
+        color: @ivori-black;
+    }
+    .value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: @ivori-black;
+    }
 }
