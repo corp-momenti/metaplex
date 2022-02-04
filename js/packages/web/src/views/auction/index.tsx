@@ -110,13 +110,7 @@ export const AuctionView = () => {
     auction?.auction.info.bidState.type === BidStateType.OpenEdition;
   const hasDescription = data === undefined || data.description === undefined;
   const description = data?.description;
-  // const attributes = data?.attributes;
-  const attributes = [
-    {trait_type: 'hello', value: 'world'},
-    {trait_type: 'hello', value: 'world'},
-    {trait_type: 'hello', value: 'world'},
-    {trait_type: 'hello', value: 'world'}
-  ];
+  const attributes = data?.attributes;
 
   const tokenInfo = useTokenList()?.mainnetTokens.filter(
     m => m.address == auction?.auction.info.tokenMint,
