@@ -76,7 +76,7 @@ export const ArtSelector = (props: ArtSelectorProps) => {
       >
         <Row
           className="content-action"
-          style={{ overflowY: 'auto', height: '50vh' }}
+          style={{ overflowY: 'auto', height: '60vh' }}
         >
         {
           items.length === 0 ? 
