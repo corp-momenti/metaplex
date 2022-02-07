@@ -878,6 +878,7 @@ const InstantSaleStep = ({
             <Input
               type="number"
               min={0}
+              step={0.01}
               autoFocus
               className="input"
               placeholder="Price"
@@ -1052,6 +1053,7 @@ const NumberOfWinnersStep = (props: {
             </span>
             <Input
               type="number"
+              step={0.01}
               autoFocus
               className="input"
               placeholder="Number of spots in the leaderboard"
@@ -1122,6 +1124,7 @@ const PriceAuction = (props: {
               <Input
                 type="number"
                 min={0}
+                step={0.01}
                 autoFocus
                 className="input"
                 placeholder="Fixed Price"
@@ -1148,6 +1151,7 @@ const PriceAuction = (props: {
               <Input
                 type="number"
                 min={0}
+                step={0.01}
                 autoFocus
                 className="input"
                 placeholder="Price"
@@ -1171,6 +1175,7 @@ const PriceAuction = (props: {
             <Input
               type="number"
               min={0}
+              step={0.01}
               className="input"
               placeholder={`Tick size in ${props.attributes.quoteMintInfoExtended? props.attributes.quoteMintInfoExtended.symbol
                 : props.attributes.quoteMintAddress == WRAPPED_SOL_MINT.toBase58()? "SOL": "your custom currency"}`}
@@ -1409,6 +1414,7 @@ const EndingPhaseAuction = (props: {
             <div className="field-input">
               <Input
                 type="number"
+                step={0.01}
                 className="input"
                 placeholder="Set the gap time"
                 onChange={info =>
@@ -1443,6 +1449,7 @@ const EndingPhaseAuction = (props: {
             </span>
             <Input
               type="number"
+              step={0.01}
               className="input"
               placeholder="Percentage"
               suffix="%"
@@ -1792,6 +1799,7 @@ const ParticipationStep = (props: {
             <Input
               type="number"
               min={0}
+              step={0.01}
               autoFocus
               className="input"
               placeholder="Fixed Price"
