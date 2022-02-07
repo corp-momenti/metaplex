@@ -897,6 +897,11 @@ const InstantSaleStep = ({
       </Row>
       <Row>
         <Button
+          disabled={!(
+            attributes.priceFloor &&
+            attributes.instantSalePrice &&
+            attributes.items.length > 0
+          )}
           onClick={() => {
             confirm();
           }}
@@ -1005,6 +1010,9 @@ const CopiesStep = (props: {
       </Row>
       <Row>
         <Button
+          disabled={!(
+            props.attributes.items.length > 0
+          )}
           onClick={() => {
             props.confirm();
           }}
@@ -1193,7 +1201,15 @@ const PriceAuction = (props: {
         </Col>
       </Row>
       <Row>
-        <Button onClick={props.confirm} className="ivri-btn--contained">
+        <Button
+          disabled={!(
+            props.attributes.priceFloor &&
+            props.attributes.priceTick &&
+            props.attributes.items.length > 0
+          )}
+          onClick={props.confirm}
+          className="ivri-btn--contained"
+        >
           Continue
         </Button>
       </Row>
@@ -1464,7 +1480,15 @@ const EndingPhaseAuction = (props: {
         </Col>
       </Row>
       <Row>
-        <Button onClick={props.confirm} className="ivri-btn--contained">
+        <Button
+          disabled={!(
+            props.attributes.auctionDuration &&
+            props.attributes.gapTime &&
+            props.attributes.tickSizeEndingPhase
+          )}
+          onClick={props.confirm}
+          className="ivri-btn--contained"
+        >
           Continue
         </Button>
       </Row>
