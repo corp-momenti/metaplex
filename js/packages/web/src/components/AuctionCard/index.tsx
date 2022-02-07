@@ -677,7 +677,7 @@ export const AuctionCard = ({
                     className="input sol-input-bid"
                     value={value}
                     onChange={setValue}
-                    precision={4}
+                    precision={2}
                     formatter={value =>
                       value
                         ? `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
