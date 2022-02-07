@@ -324,6 +324,8 @@ export const AuctionCard = ({
       : 9999999) +
       tickSize.toNumber() / LAMPORTS_PER_MINT;
 
+  const notEnoughMoney = value && value * LAMPORTS_PER_MINT > myPayingAccount.account.lamports
+
   const invalidBid =
     tickSizeInvalid ||
     gapBidInvalid ||
@@ -332,6 +334,7 @@ export const AuctionCard = ({
     value * LAMPORTS_PER_MINT < priceFloor ||
     (minBid && value < minBid) ||
     loading ||
+    notEnoughMoney ||
     !accountByMint.get(QUOTE_MINT.toBase58());
 
   useEffect(() => {
@@ -790,6 +793,11 @@ export const AuctionCard = ({
         {tickSizeInvalid && tickSize && (
           <span style={{ color: 'red' }}>
             Tick size is ◎{tickSize.toNumber() / LAMPORTS_PER_MINT}.
+          </span>
+        )}
+        {notEnoughMoney && (
+          <span style={{ color: 'red' }}>
+            Not enough SOL.
           </span>
         )}
         {gapBidInvalid && (
