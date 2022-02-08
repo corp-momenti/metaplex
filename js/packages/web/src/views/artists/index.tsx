@@ -45,7 +45,7 @@ export const ArtistsView = () => {
   );
 
   return (
-    <Layout style={{ margin: 0, marginTop: 30 }}>
+    <Layout style={{ margin: 0, marginTop: 30 }} className={ 'artists-list' }>
       <Content style={{ display: 'flex', flexWrap: 'wrap' }}>
         <Col style={{ width: '100%', marginTop: 10 }}>{artistGrid}</Col>
       </Content>

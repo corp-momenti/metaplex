@@ -80,7 +80,7 @@ export const ArtView = () => {
   );
 
   return (
-    <Content>
+    <Content style={{ padding: '0 3rem' }}>
       <Col>
         <Row ref={ref}>
           <Col

@@ -474,7 +474,7 @@ const UploadStep = (props: {
             props.confirm();
           }}
           style={{ marginTop: 24 }}
-          className="action-btn"
+          className="action-btn ivri-btn--contained-dark"
         >
           Continue to Mint
         </Button>
