@@ -26,7 +26,6 @@ export const ArtworksView = () => {
   const { userAccounts } = useUserAccounts();
 
   const [activeKey, setActiveKey] = useState(ArtworkViewState.Metaplex);
-  console.log( activeKey )
 
   const userItems = useItems({ activeKey });
 
@@ -35,15 +34,6 @@ export const ArtworksView = () => {
       pullItemsPage(userAccounts);
     }
   }, [isFetching]);
-
-  // these lines always show owned list.
-  // useEffect(() => {
-  //   if (connected) {
-  //     setActiveKey(ArtworkViewState.Owned);
-  //   } else {
-  //     setActiveKey(ArtworkViewState.Metaplex);
-  //   }
-  // }, [connected, setActiveKey]);
 
   const isDataLoading = isLoading || isFetching;
 
