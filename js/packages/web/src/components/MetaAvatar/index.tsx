@@ -18,11 +18,7 @@ const MetaAvatarItem = (props: {
       size={size}
       src={
         noImage ? (
-          <Identicon
-            alt={alt}
-            address={creator.address}
-            style={{ width: size }}
-          />
+          <div className="user-unknown"></div>
         ) : (
           image
         )
