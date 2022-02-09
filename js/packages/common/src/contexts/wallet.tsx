@@ -55,24 +55,10 @@ export const WalletModal: FC = () => {
   const phatomWallet = useMemo(() => getPhantomWallet(), []);
 
   return (
-    <MetaplexModal title="Connect Wallet" visible={visible} onCancel={close}>
-      <span
-        style={{
-          color: 'rgba(255, 255, 255, 0.75)',
-          fontSize: '14px',
-          lineHeight: '14px',
-          fontFamily: 'Inter',
-          letterSpacing: '0.02em',
-          marginBottom: 14,
-        }}
-      >
-        RECOMMENDED
-      </span>
-
+    <MetaplexModal title="Connect Wallet" className={ 'wallet-modal' } visible={visible} onCancel={close}>
       <Button
-        className="phantom-button metaplex-button"
+        className="phantom-button metaplex-button ivri-btn--outline"
         onClick={() => {
-          console.log(phatomWallet.name);
           select(phatomWallet.name);
           close();
         }}
@@ -93,7 +79,7 @@ export const WalletModal: FC = () => {
             >
               <path
                 d="M15 7.5L10 12.5L5 7.5"
-                stroke="white"
+                stroke="black"
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -109,7 +95,7 @@ export const WalletModal: FC = () => {
             >
               <path
                 d="M7.5 5L12.5 10L7.5 15"
-                stroke="white"
+                stroke="black"
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -126,7 +112,7 @@ export const WalletModal: FC = () => {
                 fontSize: '16px',
                 lineHeight: '16px',
                 letterSpacing: '-0.01em',
-                color: 'rgba(255, 255, 255, 255)',
+                color: 'rgba(0, 0, 0, 1)',
               }}
             >
               Other Wallets
@@ -140,7 +126,7 @@ export const WalletModal: FC = () => {
             return (
               <Button
                 key={idx}
-                className="metaplex-button w100"
+                className="ivri-btn--plain"
                 style={{
                   marginBottom: 5,
                 }}

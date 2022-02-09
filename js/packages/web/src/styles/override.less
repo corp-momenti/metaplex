@@ -74,10 +74,12 @@ body, .ant-modal {
     position: relative;
     transition: color .15s @easeOut;
 
-    span {
+    span, img {
         position: relative;
-        z-index: 5;
     }
+
+    span { z-index: 5; }
+    img { z-index: 4; }
 
     &::after {
         content: '';
@@ -180,7 +182,7 @@ p {
     border-radius: 0;
     background-image: none;
     position: relative;
-    
+
     #banner-inner {
       position: relative;
     }
@@ -237,7 +239,7 @@ p {
 .ant-tabs-tab {
     .ivri-btn;
     opacity: 1 !important;
-    
+
     &:hover {
         > .ant-tabs-tab-btn::after {
             .ivri-btn--border-active;
@@ -987,4 +989,20 @@ input::-webkit-outer-spin-button {
 
 .no-item {
     color: @ivori-black-tetiary;
+}
+
+.wallet-modal {
+    .ant-modal-body {
+        background-color: #FFF !important;
+    }
+
+    .ant-collapse-header {
+        margin-top: 1rem;
+        align-items: center !important;
+    }
+
+    .ivri-btn--plain {
+        display: block;
+        width: 100%;
+    }
 }
