@@ -73,7 +73,7 @@ export const MetaplexMenu = () => {
                 <div className="actions-buttons">
                   <ConnectButton
                     onClick={() => setIsModalVisible(false)}
-                    className="ivri-btn ivri-btn--outline"
+                    // className="ivri-btn ivri-btn--outline"
                   />
                   <HowToBuyModal
                     onClick={() => setIsModalVisible(false)}

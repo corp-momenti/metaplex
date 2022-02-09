@@ -27,7 +27,7 @@ export const ConnectButton = (props: ConnectButtonProps) => {
   if (!wallet || !allowWalletChange) {
     return (
       <Button
-        className={className || 'ivri-btn ivri-btn--outline'}
+        className={ className || 'ivri-btn ivri-btn--outline' }
         {...rest}
         onClick={e => {
           props.onClick ? props.onClick(e) : null;
@@ -42,12 +42,12 @@ export const ConnectButton = (props: ConnectButtonProps) => {
 
   return (
     <Dropdown.Button
-      className={ className || (connected ?  'connector' : '')}
+      className={ className || (connected ?  'connector' : 'ivri-btn ivri-btn--outline' )}
       onClick={handleClick}
       disabled={connected && disabled}
       overlay={
         <Menu className={'black-dropdown'}>
-          <Menu.Item style={{ color: 'black' }} onClick={open}>Change Wallet</Menu.Item>
+          <Menu.Item onClick={open} className={ 'ivri-btn ivri-btn--plain' }>Change Wallet</Menu.Item>
         </Menu>
       }
     >
