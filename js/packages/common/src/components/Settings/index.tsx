@@ -1,46 +1,33 @@
-import React, { useCallback } from 'react';
-import { Button, Select } from 'antd';
+import React from 'react';
 import { Tooltip } from 'antd';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { ENDPOINTS, useConnectionConfig } from '../../contexts/connection';
-import { useWalletModal } from '../../contexts';
-import { notify, shortenAddress } from '../../utils';
-import { CopyOutlined } from '@ant-design/icons';
-import { Identicon } from '../Identicon';
-import { Link } from 'react-router-dom';
+import { useMeta } from '../../contexts';
+import { shortenAddress } from '../../utils';
 
 export const Settings = ({
   additionalSettings,
 }: {
   additionalSettings?: JSX.Element;
 }) => {
-  const { connected, disconnect, publicKey } = useWallet();
-  const { endpoint } = useConnectionConfig();
-  const { setVisible } = useWalletModal();
-  const open = useCallback(() => setVisible(true), [setVisible]);
+  const { publicKey } = useWallet();
+  const { whitelistedCreatorsByCreator } = useMeta();
+
+  if (!publicKey) {
+    return null
+  }
+
+  let image = <div className="user-image"></div>
+
+  const creator = whitelistedCreatorsByCreator[publicKey.toBase58()]
+
+  if (creator && creator.info.image) {
+    image = <img className="user-image" src={creator.info.image} />;
+  }
 
   return (
     <>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center'
-        }}
-      >
-        {/* <Identicon
-          address={publicKey?.toBase58()}
-          style={{
-            width: 128, height: 128, borderRadius: 64
-          }}
-        /> */}
-        <div style={{
-          width: 128,
-          height: 128,
-          borderRadius: 64,
-          backgroundColor: '#0D0D0E',
-          marginBottom: 16
-        }}></div>
+      <div className="settings">
+        {image}
         {publicKey && (
           <>
             <Tooltip title="Address copied" trigger="click">

@@ -227,6 +227,7 @@ export const CurrentUserBadge = (props: {
   const { account } = useNativeAccount();
   const solPrice = useSolPrice();
   const [showAddFundsModal, setShowAddFundsModal] = useState<Boolean>(false);
+  const { whitelistedCreatorsByCreator } = useMeta();
 
   if (!wallet || !publicKey) {
     return null;
@@ -246,10 +247,12 @@ export const CurrentUserBadge = (props: {
     name = unknownWallet.name;
   }
 
-  let image = <Identicon address={publicKey?.toBase58()} style={iconStyle} />;
+  let image = <div className="user-image"></div>
 
-  if (unknownWallet.image) {
-    image = <img src={unknownWallet.image} style={iconStyle} />;
+  const creator = whitelistedCreatorsByCreator[publicKey.toBase58()]
+
+  if (creator && creator.info.image) {
+    image = <img src={creator.info.image} style={iconStyle} />;
   }
 
   return (
@@ -441,7 +444,7 @@ export const CurrentUserBadgeMobile = (props: {
     name = unknownWallet.name;
   }
 
-  let image = <Identicon address={publicKey?.toBase58()} style={iconStyle} />;
+  let image = <div className="user-image"></div>
 
   if (unknownWallet.image) {
     image = <img src={unknownWallet.image} style={iconStyle} />;
