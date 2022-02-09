@@ -828,7 +828,28 @@ input::-webkit-outer-spin-button {
 }
 
 .content-action {
-    margin-bottom: 48px;
+    margin-bottom: 3rem;
+}
+
+.url-form-action, .content-action {
+    h3 {
+        color: @ivori-black-primary !important;
+    }
+}
+
+.ant-upload-list-item-info {
+    svg, svg[data-icon="delete"] {
+        fill: @ivori-black-primary !important;
+    }
+}
+
+.ant-upload-list-item-card-actions-btn {
+    opacity: 1
+}
+
+
+.ant-upload-list-item-name, .ant-upload-text-icon {
+    color: @ivori-black-secondary;
 }
 
 .ant-input-affix-wrapper {
