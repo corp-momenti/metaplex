@@ -413,8 +413,6 @@ const UploadStep = (props: {
       </Form.Item>
       <Row>
         <Button
-          type="primary"
-          size="large"
           disabled={disableContinue}
           onClick={async () => {
             const data = {
@@ -473,8 +471,8 @@ const UploadStep = (props: {
             props.setFiles(files);
             props.confirm();
           }}
-          style={{ marginTop: 24 }}
-          className="action-btn ivri-btn--contained-dark"
+          style={{ margin: '24px auto 0 auto' }}
+          className="ivri-btn ivri-btn--contained"
         >
           Continue to Mint
         </Button>
