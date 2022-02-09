@@ -20,14 +20,17 @@ export const Identicon = (props: {
   useEffect(() => {
     if (address && ref.current) {
       try {
+        const width = style?.width || 16;
+        const icon = Jazzicon(
+            width,
+            parseInt(bs58.decode(address).toString('hex').slice(5, 15), 16)
+        );
+        icon.style.borderRadius = `${width}px`;
+        icon.firstChild.setAttribute('width', width);
+        icon.firstChild.setAttribute('height', width);
         ref.current.innerHTML = '';
         ref.current.className = className || '';
-        ref.current.appendChild(
-          Jazzicon(
-            style?.width || 16,
-            parseInt(bs58.decode(address).toString('hex').slice(5, 15), 16),
-          ),
-        );
+        ref.current.appendChild(icon);
       } catch (err) {
         // TODO
       }

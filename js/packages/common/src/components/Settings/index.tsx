@@ -3,6 +3,7 @@ import { Tooltip } from 'antd';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useMeta } from '../../contexts';
 import { shortenAddress } from '../../utils';
+import { Identicon } from '../Identicon';
 
 export const Settings = ({
   additionalSettings,
@@ -16,7 +17,13 @@ export const Settings = ({
     return null
   }
 
-  let image = <div className="user-image"></div>
+  let image = (
+    <Identicon
+      address={publicKey?.toBase58()}
+      style={{width: 128, marginBottom: 16}}
+    />
+  );
+
 
   const creator = whitelistedCreatorsByCreator[publicKey.toBase58()]
 
