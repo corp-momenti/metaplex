@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Avatar } from 'antd';
 import { Artist } from '../../types';
-import { Identicon } from '@oyster/common';
 
 const MetaAvatarItem = (props: {
   creator: Artist;
@@ -18,7 +17,7 @@ const MetaAvatarItem = (props: {
       size={size}
       src={
         noImage ? (
-          <div className="user-unknown"></div>
+          <div className="user-image" style={{width: size, height: size}}></div>
         ) : (
           image
         )

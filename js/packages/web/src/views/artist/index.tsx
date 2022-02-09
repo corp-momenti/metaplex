@@ -2,7 +2,6 @@ import { Col, Divider, Row } from 'antd';
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArtCard } from '../../components/ArtCard';
-import { CardLoader } from '../../components/MyLoader';
 import { useCreator, useCreatorArts } from '../../hooks';
 
 export const ArtistView = () => {
@@ -12,8 +11,8 @@ export const ArtistView = () => {
 
   const artworkGrid = (
     <div className="artwork-grid">
-      {artwork.length > 0
-        ? artwork.map((m, idx) => {
+      {
+        artwork.map((m, idx) => {
             const id = m.pubkey;
             return (
               <Link to={`/art/${id}`} key={idx}>
@@ -26,7 +25,7 @@ export const ArtistView = () => {
               </Link>
             );
           })
-        : [...Array(6)].map((_, idx) => <CardLoader key={idx} />)}
+        }
     </div>
   );
 
@@ -39,7 +38,6 @@ export const ArtistView = () => {
         >
           <Col span={24}>
             <h2>
-              {/* <MetaAvatar creators={creator ? [creator] : []} size={100} /> */}
               {creator?.info.name || creator?.info.address}
             </h2>
             <br />
@@ -47,7 +45,7 @@ export const ArtistView = () => {
             <div className="info-content">{creator?.info.description}</div>
             <br />
             <div className="info-header">Art Created</div>
-            {artworkGrid}
+            {artwork.length > 0 ? artworkGrid : <div className="no-item">There&#39;s no item yet</div>}
           </Col>
         </Row>
       </Col>
