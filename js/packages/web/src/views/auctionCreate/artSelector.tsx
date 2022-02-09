@@ -58,7 +58,7 @@ export const ArtSelector = (props: ArtSelectorProps) => {
           );
         })}
         {(allowMultiple || selectedItems.size === 0) && (
-          <div className="ant-card ant-card-bordered art-card" onClick={open}>
+          <div className="ant-card ant-card-bordered art-card-for-selector art-card" onClick={open}>
             <span className="text-center">Add an NFT</span>
           </div>
         )}
