@@ -57,7 +57,7 @@ export const WalletModal: FC = () => {
   return (
     <MetaplexModal title="Connect Wallet" className={ 'wallet-modal' } visible={visible} onCancel={close}>
       <Button
-        className="phantom-button metaplex-button ivri-btn--outline"
+        className="ivri-btn ivri-btn--outline"
         onClick={() => {
           select(phatomWallet.name);
           close();
@@ -126,7 +126,7 @@ export const WalletModal: FC = () => {
             return (
               <Button
                 key={idx}
-                className="ivri-btn--plain"
+                className="ivri-btn ivri-btn--plain"
                 style={{
                   marginBottom: 5,
                 }}

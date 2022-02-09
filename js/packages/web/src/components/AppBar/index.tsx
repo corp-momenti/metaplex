@@ -73,11 +73,11 @@ export const MetaplexMenu = () => {
                 <div className="actions-buttons">
                   <ConnectButton
                     onClick={() => setIsModalVisible(false)}
-                    className="secondary-btn"
+                    className="ivri-btn ivri-btn--outline"
                   />
                   <HowToBuyModal
                     onClick={() => setIsModalVisible(false)}
-                    buttonClassName="black-btn"
+                    buttonClassName="ivri-btn ivri-btn--plain"
                   />
                 </div>
               ) : (
