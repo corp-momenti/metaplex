@@ -677,6 +677,7 @@ const InfoStep = (props: {
                   <Form.Item>
                     <Button
                       type="dashed"
+                      className='ivri-btn ivri-btn--outline'
                       onClick={() => add()}
                       block
                       icon={<PlusOutlined />}
@@ -693,8 +694,6 @@ const InfoStep = (props: {
 
       <Row>
         <Button
-          type="primary"
-          size="large"
           onClick={() => {
             form.validateFields().then(values => {
               const nftAttributes = values.attributes;
@@ -714,9 +713,10 @@ const InfoStep = (props: {
               props.confirm();
             });
           }}
-          className="action-btn"
+          style={{ margin: '0 auto' }}
+          className="ivri-btn ivri-btn--contained"
         >
-          Continue to royalties
+          Continue to Royalties
         </Button>
       </Row>
     </>
