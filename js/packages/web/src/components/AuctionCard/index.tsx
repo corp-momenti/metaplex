@@ -650,7 +650,7 @@ export const AuctionCard = ({
                   {loading ? <Spin /> : 'Start auction'}
                 </Button>
               ) : (
-                !showPlaceBid && (
+                !showPlaceBid && wallet.connected && (
                   <Button
                   className="ivri-btn--outline"
                     onClick={() => {

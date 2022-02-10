@@ -645,7 +645,7 @@ const InfoStep = (props: {
           <label className="action-field">
             <span className="field-title">Attributes</span>
           </label>
-          <Form name="dynamic_attributes" form={form} autoComplete="off">
+          <Form name="dynamic_attributes" form={form} autoComplete="off" style={{ display: 'block' }}>
             <Form.List name="attributes">
               {(fields, { add, remove }) => (
                 <>
