@@ -74,7 +74,7 @@ export const ArtworksView = () => {
   return (
     <Layout style={{ margin: 0 }} id="items-tab">
       <Content style={{ display: 'flex', flexWrap: 'wrap' }} id="items-tabs">
-        <Col style={{ width: '100%', marginTop: 10 }}>
+        <Col style={{ width: '100%' }}>
           <Row>
             <Tabs
               activeKey={activeKey}
