@@ -1076,20 +1076,10 @@ const LaunchStep = (props: {
       </Row>
       <Row>
         <Button
-          type="primary"
-          size="large"
           onClick={props.confirm}
-          className="action-btn"
+          className="ivri-btn ivri-btn--contained"
         >
           Pay with SOL
-        </Button>
-        <Button
-          disabled={true}
-          size="large"
-          onClick={props.confirm}
-          className="action-btn"
-        >
-          Pay with Credit Card
         </Button>
       </Row>
     </>
