@@ -645,7 +645,7 @@ const InfoStep = (props: {
           <label className="action-field">
             <span className="field-title">Attributes</span>
           </label>
-          <Form name="dynamic_attributes" form={form} autoComplete="off">
+          <Form name="dynamic_attributes" form={form} autoComplete="off" style={{ display: 'block' }}>
             <Form.List name="attributes">
               {(fields, { add, remove }) => (
                 <>
@@ -1076,20 +1076,10 @@ const LaunchStep = (props: {
       </Row>
       <Row>
         <Button
-          type="primary"
-          size="large"
           onClick={props.confirm}
-          className="action-btn"
+          className="ivri-btn ivri-btn--contained"
         >
           Pay with SOL
-        </Button>
-        <Button
-          disabled={true}
-          size="large"
-          onClick={props.confirm}
-          className="action-btn"
-        >
-          Pay with Credit Card
         </Button>
       </Row>
     </>
