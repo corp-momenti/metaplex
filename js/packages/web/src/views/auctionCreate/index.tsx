@@ -181,9 +181,6 @@ export const AuctionCreateView = () => {
     items: [],
     tiers: [],
   });
-  const [quoteMintAddress, setQuoteMintAddress] = useState<string>()
-  const [quoteMintInfo, setQuoteMintInfo] = useState<MintInfo>()
-  const [quoteMintInfoExtended, setQuoteMintInfoExtended] = useState<TokenInfo>()
 
   useEffect(() => {
     if (step_param) setStep(parseInt(step_param));
@@ -192,7 +189,13 @@ export const AuctionCreateView = () => {
 
   const gotoNextStep = (_step?: number) => {
     const nextStep = _step === undefined ? step + 1 : _step;
-    history.push(`/auction/create/${nextStep.toString()}`);
+    const path = `/auction/create/${nextStep.toString()}`;
+
+    if (history.location.pathname == '/auction/create/0') {
+      history.push(path);
+    } else {
+      history.replace(path);
+    }
   };
 
   const createAuction = async () => {
