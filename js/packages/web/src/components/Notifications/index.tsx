@@ -522,7 +522,7 @@ export function Notifications() {
 
   const content = notifications.length ? (
     <div
-      style={{ width: '300px', color: 'white' }}
+      style={{ width: '300px' }}
       className={'notifications-container'}
     >
       <List
@@ -549,6 +549,7 @@ export function Notifications() {
             }
           >
             <List.Item.Meta
+              style={{ color: 'rgba(0, 0, 0, 1)' }}
               title={<span>{item.title}</span>}
               description={
                 <span>

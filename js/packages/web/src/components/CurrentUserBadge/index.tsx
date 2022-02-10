@@ -330,86 +330,88 @@ export const CurrentUserBadge = (props: {
   );
 };
 
-export const Cog = () => {
+const cogContent = () => {
   const { endpoint } = useConnectionConfig();
   const routerSearchParams = useQuerySearch();
   const { setVisible } = useWalletModal();
   const open = useCallback(() => setVisible(true), [setVisible]);
 
   return (
-    <div className="wallet-wrapper">
-      <Popover
-        trigger="click"
-        placement="bottomRight"
-        content={
-          <div
-            style={{
-              width: 250,
-            }}
-          >
-            <h5
-              style={{
-                color: 'rgba(255, 255, 255, 0.7)',
-                letterSpacing: '0.02em',
-              }}
-            >
-              NETWORK
-            </h5>
-            <Select
-              onSelect={network => {
-                // Reload the page, forward user selection to the URL querystring.
-                // The app will be re-initialized with the correct network
-                // (which will also be saved to local storage for future visits)
-                // for all its lifecycle.
+  <div
+    style={{
+      width: 250,
+    }}
+  >
+    <h5
+      style={{
+        color: '#0D0D0C',
+        letterSpacing: '0.02em',
+      }}
+    >
+      NETWORK
+    </h5>
+    <Select
+      onSelect={network => {
+        // Reload the page, forward user selection to the URL querystring.
+        // The app will be re-initialized with the correct network
+        // (which will also be saved to local storage for future visits)
+        // for all its lifecycle.
 
-                // Because we use react-router's HashRouter, we must append
-                // the query parameters to the window location's hash & reload
-                // explicitly. We cannot update the window location's search
-                // property the standard way, see examples below.
+        // Because we use react-router's HashRouter, we must append
+        // the query parameters to the window location's hash & reload
+        // explicitly. We cannot update the window location's search
+        // property the standard way, see examples below.
 
-                // doesn't work: https://localhost/?network=devnet#/
-                // works: https://localhost/#/?network=devnet
-                const windowHash = window.location.hash;
-                routerSearchParams.set('network', network);
-                const nextLocationHash = `${
-                  windowHash.split('?')[0]
-                }?${routerSearchParams.toString()}`;
-                window.location.hash = nextLocationHash;
-                window.location.reload();
-              }}
-              value={endpoint.name}
-              bordered={false}
-              style={{
-                background: 'rgba(255, 255, 255, 0.05)',
-                borderRadius: 8,
-                width: '100%',
-                marginBottom: 10,
-              }}
-            >
-              {ENDPOINTS.map(({ name }) => (
-                <Select.Option value={name} key={endpoint.name}>
-                  {name}
-                </Select.Option>
-              ))}
-            </Select>
+        // doesn't work: https://localhost/?network=devnet#/
+        // works: https://localhost/#/?network=devnet
+        const windowHash = window.location.hash;
+        routerSearchParams.set('network', network);
+        const nextLocationHash = `${
+          windowHash.split('?')[0]
+        }?${routerSearchParams.toString()}`;
+        window.location.hash = nextLocationHash;
+        window.location.reload();
+      }}
+      value={endpoint.name}
+      bordered={false}
+      style={{
+        background: 'rgba(255, 255, 255, 0.05)',
+        borderRadius: 8,
+        width: '100%',
+        marginBottom: 10,
+      }}
+    >
+      {ENDPOINTS.map(({ name }) => (
+        <Select.Option value={name} key={endpoint.name}>
+          {name}
+        </Select.Option>
+      ))}
+    </Select>
 
-            <Button
-              className="metaplex-button-default"
-              style={btnStyle}
-              onClick={open}
-            >
-              Change wallet
-            </Button>
-          </div>
-        }
-      >
-        <Button className="wallet-key">
-          <img src="/cog.svg" />
-        </Button>
-      </Popover>
-    </div>
+    <Button
+      className="ivri-btn ivri-btn--plain"
+      style={btnStyle}
+      onClick={open}
+    >
+      Change wallet
+    </Button>
+  </div>)
+}
+
+export const Cog = () => {
+  return (
+    <Popover
+      trigger="click"
+      placement="bottomRight"
+      content={ cogContent }
+    >
+      <Button className="wallet-key">
+        <img src="/cog.svg" />
+      </Button>
+    </Popover>
   );
 };
+
 
 export const CurrentUserBadgeMobile = (props: {
   showBalance?: boolean;

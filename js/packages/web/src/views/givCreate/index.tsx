@@ -225,7 +225,7 @@ export const GivCreateView = () => {
           )}
           {0 < step && step < 5 && (
             <div style={{ margin: 'auto', width: 'fit-content' }}>
-              <Button onClick={() => gotoStep(step - 1)}>Back</Button>
+              <Button onClick={() => gotoStep(step - 1)} className='ivri-btn ivri-btn--plain'>Back</Button>
             </div>
           )}
         </Col>
@@ -315,7 +315,7 @@ const UploadStep = (props: {
         <h3>Upload a cover image (PNG, JPG, GIF, SVG)</h3>
         <Dragger
           accept=".png,.jpg,.gif,.mp4,.svg"
-          style={{ padding: 20, background: 'rgba(255, 255, 255, 0.08)' }}
+          style={{ padding: 20, border: '3px dashed #0D0D0C', borderRadius: 0 }}
           multiple={false}
           onRemove={() => {
             setCoverFile(undefined);
@@ -347,11 +347,6 @@ const UploadStep = (props: {
             setCoverArtError(undefined);
           }}
         >
-          <div className="ant-upload-drag-icon">
-            <h3 style={{ fontWeight: 700 }}>
-              Upload your cover image (PNG, JPG, GIF, SVG)
-            </h3>
-          </div>
           {coverArtError ? (
             <Text type="danger">{coverArtError}</Text>
           ) : (
@@ -413,8 +408,6 @@ const UploadStep = (props: {
       </Form.Item>
       <Row>
         <Button
-          type="primary"
-          size="large"
           disabled={disableContinue}
           onClick={async () => {
             const data = {
@@ -473,8 +466,8 @@ const UploadStep = (props: {
             props.setFiles(files);
             props.confirm();
           }}
-          style={{ marginTop: 24 }}
-          className="action-btn ivri-btn--contained-dark"
+          style={{ margin: '24px auto 0 auto' }}
+          className="ivri-btn ivri-btn--contained"
         >
           Continue to Mint
         </Button>
@@ -679,6 +672,7 @@ const InfoStep = (props: {
                   <Form.Item>
                     <Button
                       type="dashed"
+                      className='ivri-btn ivri-btn--outline'
                       onClick={() => add()}
                       block
                       icon={<PlusOutlined />}
@@ -695,8 +689,6 @@ const InfoStep = (props: {
 
       <Row>
         <Button
-          type="primary"
-          size="large"
           onClick={() => {
             form.validateFields().then(values => {
               const nftAttributes = values.attributes;
@@ -716,9 +708,10 @@ const InfoStep = (props: {
               props.confirm();
             });
           }}
-          className="action-btn"
+          style={{ margin: '0 auto' }}
+          className="ivri-btn ivri-btn--contained"
         >
-          Continue to royalties
+          Continue to Royalties
         </Button>
       </Row>
     </>

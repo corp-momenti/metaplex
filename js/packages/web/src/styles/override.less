@@ -31,6 +31,7 @@ body, .ant-modal {
     font-size: 1.0625rem;
     line-height: auto;
     padding: 7px 12px;
+    background: unset;
     color: @ivori-black-primary !important;
 }
 
@@ -74,10 +75,12 @@ body, .ant-modal {
     position: relative;
     transition: color .15s @easeOut;
 
-    span {
+    span, img {
         position: relative;
-        z-index: 5;
     }
+
+    span { z-index: 5; }
+    img { z-index: 4; }
 
     &::after {
         content: '';
@@ -180,7 +183,7 @@ p {
     border-radius: 0;
     background-image: none;
     position: relative;
-    
+
     #banner-inner {
       position: relative;
     }
@@ -237,7 +240,7 @@ p {
 .ant-tabs-tab {
     .ivri-btn;
     opacity: 1 !important;
-    
+
     &:hover {
         > .ant-tabs-tab-btn::after {
             .ivri-btn--border-active;
@@ -508,6 +511,14 @@ p {
     .ant-select-arrow .anticon > svg {
         width: 14px !important;
         height: 14px !important;
+    }
+
+    .textarea {
+        
+        &.ant-input {
+            border-radius: 0 !important;
+            background: #FFF !important;
+        }
     }
 }
 
@@ -817,7 +828,28 @@ input::-webkit-outer-spin-button {
 }
 
 .content-action {
-    margin-bottom: 48px;
+    margin-bottom: 3rem;
+}
+
+.url-form-action, .content-action {
+    h3 {
+        color: @ivori-black-primary !important;
+    }
+}
+
+.ant-upload-list-item-info {
+    svg, svg[data-icon="delete"] {
+        fill: @ivori-black-primary !important;
+    }
+}
+
+.ant-upload-list-item-card-actions-btn {
+    opacity: 1
+}
+
+
+.ant-upload-list-item-name, .ant-upload-text-icon {
+    color: @ivori-black-secondary;
 }
 
 .ant-input-affix-wrapper {
@@ -987,4 +1019,38 @@ input::-webkit-outer-spin-button {
 
 .no-item {
     color: @ivori-black-tetiary;
+}
+
+.wallet-modal {
+    .ant-modal-body {
+        background-color: #FFF !important;
+    }
+
+    .ant-collapse-header {
+        margin-top: 1rem;
+        align-items: center !important;
+    }
+
+    .ivri-btn--plain {
+        display: block;
+        width: 100%;
+    }
+}
+
+.black-dropdown {
+    min-width: 200px
+}
+
+.ant-popover-content, .ant-popover-inner-content, .ant-select-borderless {
+    color: @ivori-black-primary !important;
+}
+
+.ant-popover-content, .ant-popover-content > .ant-popover-inner  {
+    background-color: #FFF !important;
+}
+
+.ant-popover-inner {
+    border-radius: 0;
+    box-shadow: usset !important;
+    border: 5px solid @ivori-black-primary;
 }
