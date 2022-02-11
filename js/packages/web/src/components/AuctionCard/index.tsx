@@ -760,9 +760,7 @@ export const AuctionCard = ({
             auctionView.isInstantSale &&
             !isAlreadyBought && (
               <Button
-                type="primary"
-                size="large"
-                className="ant-btn secondary-btn"
+                className="ivri-btn ivri-btn--contained"
                 disabled={loading}
                 onClick={instantSaleAction}
                 style={{ marginTop: 20, width: '100%' }}
