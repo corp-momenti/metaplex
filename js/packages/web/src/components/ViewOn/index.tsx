@@ -13,13 +13,13 @@ export const ViewOn = ({ id }: { id: string }) => {
         <h6>View on</h6>
         <div style={{ display: 'flex' }}>
           <Button
-            className="tag"
+            className="tag ivri-btn ivri-btn--outline"
             onClick={() => window.open(art.uri || '', '_blank')}
           >
-            Arweave
+            Metadata
           </Button>
           <Button
-            className="tag"
+            className="tag ivri-btn ivri-btn--outline"
             onClick={() => {
               const cluster = endpoint.name;
               const explorerURL = new URL(
@@ -32,7 +32,7 @@ export const ViewOn = ({ id }: { id: string }) => {
               window.open(explorerURL.href, '_blank');
             }}
           >
-            Solana
+            Transaction
           </Button>
         </div>
       </Col>

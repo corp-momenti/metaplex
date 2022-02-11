@@ -760,9 +760,7 @@ export const AuctionCard = ({
             auctionView.isInstantSale &&
             !isAlreadyBought && (
               <Button
-                type="primary"
-                size="large"
-                className="ant-btn secondary-btn"
+                className="ivri-btn ivri-btn--contained"
                 disabled={loading}
                 onClick={instantSaleAction}
                 style={{ marginTop: 20, width: '100%' }}
@@ -898,12 +896,13 @@ export const AuctionCard = ({
 
       <MetaplexModal
         visible={showWarningModal}
+        title="Reclaim"
         onCancel={() => setShowWarningModal(false)}
         bodyStyle={{
           alignItems: 'start',
         }}
       >
-        <h3 style={{ color: 'white' }}>
+        <h3>
           Warning: There may be some items in this auction that still are
           required by the auction for printing bidders&apos; limited or open
           edition NFTs. If you wish to withdraw them, you are agreeing to foot
