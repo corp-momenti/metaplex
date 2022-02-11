@@ -1066,14 +1066,20 @@ input::-webkit-outer-spin-button {
 
 .modal-box {
     .ant-modal-content {
-        padding: 2rem;
+        // padding: 2rem;
         background: @white-primary !important;
     }
     .ant-modal-body {
+        padding: 2rem;
         background: @white-primary !important;
         color: @ivori-black-primary !important;
         padding: 1.5rem !important;
-        font-size: 16px !important;
         box-shadow: unset !important;
+    }
+}
+
+.ant-list-item-extra {
+    svg {
+        fill: @ivori-black-primary !important;
     }
 }
