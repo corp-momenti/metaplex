@@ -55,7 +55,7 @@ export const WalletModal: FC = () => {
   const phatomWallet = useMemo(() => getPhantomWallet(), []);
 
   return (
-    <MetaplexModal title="Connect Wallet" className={ 'wallet-modal' } visible={visible} onCancel={close}>
+    <MetaplexModal title="Connect Wallet" className={ 'wallet-modal' } visible={visible} onCancel={close} destroyOnClose={ true }>
       <Button
         className="ivri-btn ivri-btn--outline"
         onClick={() => {

@@ -101,6 +101,7 @@ export const InstructionsModal: React.FC<ModalProps> = ({
         onOk={handleOk}
         onCancel={handleCancel}
         footer={null}
+        destroyOnClose={ true }
         className="modal-box instructions-modal"
         closeIcon={<span>Close</span>}
       >
