@@ -176,8 +176,12 @@ p {
 
 #current-banner {
     width: 100%;
-    height: auto !important;
-    padding: 8rem 4rem;
+    height: calc( 100vh - 180px );
+    min-height: 720px;
+    max-height: 867px;
+    display: flex;
+    align-items: center;
+    padding: 0rem 4rem;
     background-color: @ivori-black-primary !important;
     color: @white-primary;
     border-radius: 0;
