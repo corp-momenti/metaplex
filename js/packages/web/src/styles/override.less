@@ -568,7 +568,9 @@ input::-webkit-outer-spin-button {
 #items-tab {
     .ant-tabs-nav {
         background-color: @ivori-black-primary;
-        height: 40rem;
+        height: calc( 100vh - 180px );
+        min-height: 25rem;
+        max-height: 40rem;
     }
 
     .tab-title {
